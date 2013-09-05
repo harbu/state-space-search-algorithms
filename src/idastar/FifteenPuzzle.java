@@ -1,24 +1,19 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package idastar;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @author harbu
+ * Represents a classical sliding 15-puzzle with a 4x4 board.
+ * @author Eric Andrews
  */
 public class FifteenPuzzle {
     
-    private static final int EMPTY_SPACE = 0;
+    public static final int EMPTY_SPACE = 0;
     private static final String SIZE_ERROR = "Given array not of size 4x4.";
     private static final String NUMBER_NOT_IN_RANGE =
             "Numbers must be between 1 and 15 or equal to " + EMPTY_SPACE + ".";
     private static final String NUMBER_USED = "Number %d appears more than once.";
-    
     
     private final int[][] layout;
     private int emptySpaceY = -1;
@@ -69,6 +64,10 @@ public class FifteenPuzzle {
             output += "\n";
         }
         return output;
+    }
+    
+    public int getNumberAtCoordinate(int x, int y) {
+        return layout[y][x];
     }
     
     private FifteenPuzzle(int[][] layout) {
