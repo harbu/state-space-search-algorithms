@@ -7,7 +7,7 @@ import idastar.problems.Problem;
 
 public class ProblemRandomizer {
 
-    private static final int ROUNDS = 80;
+    private static final int ROUNDS = 30;
     private static final Random randomGenerator = new Random();
 
     public static Problem randomizeProblem(Problem state) {
