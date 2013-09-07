@@ -1,4 +1,4 @@
-package idastar.util;
+package idastar.problems.slidingpuzzle;
 
 import org.junit.*;
 import static org.junit.Assert.*;

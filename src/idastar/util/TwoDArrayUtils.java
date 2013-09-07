@@ -10,7 +10,7 @@ import java.util.Arrays;
 public class TwoDArrayUtils {
 
     /**
-     * Find a value from a 2-dimensional array.
+     * Find first occurrence of value from a 2-dimensional array.
      *
      * @param array 2-d array to search from
      * @param value value to find
