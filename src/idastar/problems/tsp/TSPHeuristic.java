@@ -23,8 +23,8 @@ public class TSPHeuristic implements Heuristic<TSP> {
         List<String> nodesHandled = new ArrayList<>();
         Set<String> nodesLeft = new HashSet<>(node.getCitiesNotYetVisited());
         nodesLeft.add(node.getCurrentCity());
-        CompleteGraph subGraph = node.getGraph().subGraph(nodesLeft);
-        Map<String, List<Edge>> edgesByVertex = subGraph.getEdges();
+        CompleteGraph subGraph = node.getGraph().subGraph(new ArrayList<>(nodesLeft));
+        Map<String, Set<Edge>> edgesByVertex = subGraph.getEdges();
 
         if (nodesLeft.isEmpty()) {
             return 0;
@@ -41,7 +41,7 @@ public class TSPHeuristic implements Heuristic<TSP> {
         return total;
     }
 
-    private int findMinimumEdge(List<String> nodesHandled, Map<String, List<Edge>> edgesByVertex, Set<String> nodesLeft) {
+    private int findMinimumEdge(List<String> nodesHandled, Map<String, Set<Edge>> edgesByVertex, Set<String> nodesLeft) {
         int minCost = Integer.MAX_VALUE;
         Edge minEdge = null;
         for (String from : nodesHandled) {

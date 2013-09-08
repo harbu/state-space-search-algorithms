@@ -4,7 +4,7 @@
  */
 package idastar.problems.tsp;
 
-import idastar.algorithm.NoHeuristic;
+import idastar.problems.NoHeuristic;
 import idastar.problems.Heuristic;
 import idastar.problems.Move;
 import idastar.problems.Problem;

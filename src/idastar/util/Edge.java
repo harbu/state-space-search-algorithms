@@ -1,5 +1,7 @@
 package idastar.util;
 
+import java.util.Objects;
+
 public class Edge implements Comparable<Edge> {
 
     private final String from;
@@ -25,6 +27,24 @@ public class Edge implements Comparable<Edge> {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (obj == null || !(obj instanceof Edge)) {
+            return false;
+        } else {
+            return compareTo((Edge) obj) == 0;
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 89 * hash + Objects.hashCode(this.from);
+        hash = 89 * hash + Objects.hashCode(this.to);
+        hash = 89 * hash + this.cost;
+        return hash;
+    }
+
+    @Override
     public int compareTo(Edge o) {
         if (this.getCost() < o.getCost()) {
             return -1;
@@ -33,5 +53,10 @@ public class Edge implements Comparable<Edge> {
         } else {
             return 0;
         }
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s --- (%d) --> %s", from, cost, to);
     }
 }

@@ -1,4 +1,4 @@
-package idastar.algorithm;
+package idastar.problems;
 
 import idastar.problems.Heuristic;
 import idastar.problems.Problem;
