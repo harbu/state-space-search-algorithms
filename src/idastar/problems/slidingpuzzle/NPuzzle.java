@@ -67,11 +67,6 @@ public class NPuzzle implements Problem<NPuzzle> {
     public int getN() {
         return n;
     }
-    
-    @Override
-    public Heuristic<NPuzzle> createHeuristicToThisNode() {
-        return new NPuzzleHeuristic(this);
-    }
 
     @Override
     public boolean equals(Object o) {

@@ -4,6 +4,7 @@
  */
 package idastar.algorithm;
 
+import idastar.problems.Goal;
 import idastar.problems.Move;
 import idastar.problems.Problem;
 import java.util.LinkedList;
@@ -16,7 +17,7 @@ public class IDAStar<T extends Problem<T>> extends Algorithm<T> {
     private static final int INFINITY = Integer.MAX_VALUE;
     private static final int FOUND = -1;
 
-    public IDAStar(T start, T goal) {
+    public IDAStar(T start, Goal<T> goal) {
         super(start, goal);
     }
 
@@ -41,7 +42,7 @@ public class IDAStar<T extends Problem<T>> extends Algorithm<T> {
 
         if (f > threshold) {
             return f;
-        } else if (node.equals(goal)) {
+        } else if (goal.isGoalReached(node)) {
             pathToGoal = new LinkedList<>();
             pathToGoal.addFirst(node);
             return FOUND;

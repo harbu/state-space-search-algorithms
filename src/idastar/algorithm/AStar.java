@@ -1,5 +1,6 @@
 package idastar.algorithm;
 
+import idastar.problems.Goal;
 import idastar.problems.Move;
 import idastar.problems.Problem;
 import java.util.HashMap;
@@ -9,9 +10,16 @@ import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Set;
 
+/**
+ * A*-star best-first search algorithm implementation.
+ * 
+ * When heuristic returns zero, this algorithm is essentially becomes
+ * uniform-cost search.
+ * 
+ */
 public class AStar<T extends Problem<T>> extends Algorithm<T> {
 
-    public AStar(T start, T goal) {
+    public AStar(T start, Goal<T> goal) {
         super(start, goal);
     }
 
@@ -29,8 +37,8 @@ public class AStar<T extends Problem<T>> extends Algorithm<T> {
             openSet.remove(current.getNode());
             closedSet.add(current.getNode());
 
-            if (current.getNode().equals(goal)) {
-                reconstructPath(shortestPathToNodes);
+            if (goal.isGoalReached(current.getNode())) {
+                reconstructPath(current.getNode(), shortestPathToNodes);
                 return true;
             }
 
@@ -39,11 +47,11 @@ public class AStar<T extends Problem<T>> extends Algorithm<T> {
                 if (!closedSet.contains(neighbour)) {
                     int tentativeG = current.getG() + move.getCost();
                     if (!openSet.containsKey(neighbour)) {
-                        queue.add(new QueueEntry<>(neighbour, tentativeG, heuristic.calculate(goal)));
+                        queue.add(new QueueEntry<>(neighbour, tentativeG, heuristic.calculate(neighbour)));
                         shortestPathToNodes.put(neighbour, current.getNode());
                         openSet.put(neighbour, tentativeG);
                     } else if (tentativeG < openSet.get(neighbour)) {
-                        queue.add(new QueueEntry<>(neighbour, tentativeG, heuristic.calculate(goal)));
+                        queue.add(new QueueEntry<>(neighbour, tentativeG, heuristic.calculate(neighbour)));
                         shortestPathToNodes.put(neighbour, current.getNode());
                     }
                 }
@@ -53,9 +61,8 @@ public class AStar<T extends Problem<T>> extends Algorithm<T> {
         return false;
     }
 
-    private void reconstructPath(Map<T, T> shortestPathToNodes) {
+    private void reconstructPath(T node, Map<T, T> shortestPathToNodes) {
         pathToGoal = new LinkedList<>();
-        T node = goal;
         while (!node.equals(start)) {
             pathToGoal.addFirst(node);
             node = shortestPathToNodes.get(node);
