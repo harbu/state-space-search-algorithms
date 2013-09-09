@@ -4,14 +4,14 @@ import idastar.problems.Goal;
 import idastar.problems.Move;
 import idastar.problems.Problem;
 import java.util.Deque;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.List;
+import java.util.Map;
 import java.util.Set;
-import java.util.Stack;
 
 public class BruteForceSearch<T extends Problem<T>> extends Algorithm<T> {
-    private SearchType searchType;
+    private final SearchType searchType;
 
     public enum SearchType {
         BREADTH_FIRST,
@@ -27,20 +27,24 @@ public class BruteForceSearch<T extends Problem<T>> extends Algorithm<T> {
     public boolean solve() {
         Set<T> closedSet = new HashSet<>();
         Deque<T> openList = new LinkedList<>();
+        Map<T,T> pathTo = new HashMap<>();
         
         putToOpenList(openList, start);
         closedSet.add(start);
+        pathTo.put(start, null);
         
         while (!openList.isEmpty()) {
             T node = openList.pop();
             
             if (goal.isGoalReached(node)) {
+                rebuildPath(pathTo, node);
                 return true;
             }
             
             for (Move<T> move : node.getMoves()) {
                 T neighbour = move.getNode();
                 if (!closedSet.contains(neighbour)) {
+                    pathTo.put(neighbour, node);
                     closedSet.add(neighbour);
                     putToOpenList(openList, neighbour);
                 }
@@ -55,6 +59,15 @@ public class BruteForceSearch<T extends Problem<T>> extends Algorithm<T> {
             openList.addLast(node);
         } else {
             openList.addFirst(node);
+        }
+    }
+    
+    
+    private void rebuildPath(Map<T,T> pathTo, T node) {
+        pathToGoal = new LinkedList<>();
+        while (node != null) {
+            pathToGoal.addFirst(node);
+            node = pathTo.get(node);
         }
     }
 }

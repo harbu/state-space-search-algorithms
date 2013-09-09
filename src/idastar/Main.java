@@ -2,8 +2,12 @@ package idastar;
 
 import idastar.algorithm.AStar;
 import idastar.algorithm.Algorithm;
+import idastar.algorithm.BruteForceSearch;
+import idastar.algorithm.IDAStar;
 import idastar.problems.slidingpuzzle.NPuzzle;
 import idastar.problems.Problem;
+import idastar.problems.constraint.ConstraintSatisfactionGoal;
+import idastar.problems.constraint.NQueensProblem;
 import idastar.problems.slidingpuzzle.NPuzzleGoal;
 import idastar.problems.tsp.TSP;
 import idastar.problems.tsp.TSPGoal;
@@ -18,7 +22,7 @@ import java.util.Arrays;
 public class Main {
     
     public static void main(String[] args) {
-        tsp();
+        queens();
     }
 
     public static void slidingPuzzle() {
@@ -75,5 +79,13 @@ public class Main {
         System.out.println("-----");
         System.out.println(a.getPathToGoal());
         System.out.println("Number of steps required: " + a.getPathToGoal().size());
+    }
+    
+    public static void queens() {
+        NQueensProblem problem = new NQueensProblem(20);
+        Algorithm algorithm = new BruteForceSearch(problem,
+                new ConstraintSatisfactionGoal(), BruteForceSearch.SearchType.DEPTH_FIRST);
+        algorithm.solve();
+        System.out.println(algorithm.getPathToGoal().get(algorithm.getPathToGoal().size()-1));
     }
 }
