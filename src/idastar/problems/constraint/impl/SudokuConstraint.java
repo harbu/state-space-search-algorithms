@@ -1,7 +1,8 @@
-package idastar.problems.constraint;
+package idastar.problems.constraint.impl;
 
-import static idastar.problems.constraint.SudokuProblem.NUM_OF_ROWS;
-import static idastar.problems.constraint.SudokuProblem.indexConverter;
+import idastar.problems.constraint.Constraint;
+import static idastar.problems.constraint.impl.SudokuProblem.NUM_OF_ROWS;
+import static idastar.problems.constraint.impl.SudokuProblem.indexConverter;
 import idastar.util.Coordinate;
 import java.util.List;
 import java.util.Set;

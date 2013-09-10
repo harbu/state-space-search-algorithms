@@ -3,18 +3,18 @@ package idastar.problems.slidingpuzzle;
 import org.junit.*;
 import static org.junit.Assert.*;
 
-import idastar.problems.slidingpuzzle.NPuzzle;
+import idastar.problems.slidingpuzzle.NPuzzleState;
 import idastar.problems.slidingpuzzle.NPuzzleException;
 import idastar.problems.slidingpuzzle.NPuzzleHeuristic;
 
 public class NPuzzleHeuristicTest {
 
-    private NPuzzle goal;
+    private NPuzzleState goal;
     private NPuzzleHeuristic heuristic;
 
     @Before
     public void setUp() {
-        goal = NPuzzle.createEightPuzzle(new int[][]{
+        goal = NPuzzleState.createEightPuzzle(new int[][]{
             {1, 2, 3},
             {4, 5, 6},
             {7, 8, 0}
@@ -29,7 +29,7 @@ public class NPuzzleHeuristicTest {
 
     @Test
     public void testCalculate_two() {
-        NPuzzle node = NPuzzle.createEightPuzzle(new int[][]{
+        NPuzzleState node = NPuzzleState.createEightPuzzle(new int[][]{
             {8, 5, 3},
             {2, 0, 7},
             {4, 6, 1}
@@ -43,7 +43,7 @@ public class NPuzzleHeuristicTest {
 
     @Test(expected = NPuzzleException.class)
     public void testCalculate_incompatibleSize() {
-        NPuzzle node = NPuzzle.createFifteenPuzzle(new int[][]{
+        NPuzzleState node = NPuzzleState.createFifteenPuzzle(new int[][]{
             {1, 2, 3, 4},
             {5, 6, 7, 8},
             {9, 10, 11, 12},

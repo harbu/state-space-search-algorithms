@@ -1,24 +1,20 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package idastar.algorithm;
 
-import idastar.problems.Goal;
-import idastar.problems.Move;
+import idastar.problems.Operation;
 import idastar.problems.Problem;
+import idastar.problems.State;
 import java.util.LinkedList;
 
 /**
  * Iterative deepening A* search.
  */
-public class IDAStar<T extends Problem<T>> extends Algorithm<T> {
+public class IDAStar<T extends State<T>> extends Algorithm<T> {
 
     private static final int INFINITY = Integer.MAX_VALUE;
     private static final int FOUND = -1;
 
-    public IDAStar(T start, Goal<T> goal) {
-        super(start, goal);
+    public IDAStar(Problem<T> problem) {
+        super(problem);
     }
 
     @Override
@@ -49,7 +45,7 @@ public class IDAStar<T extends Problem<T>> extends Algorithm<T> {
         }
 
         int min = INFINITY;
-        for (Move<T> move : node.getMoves()) {
+        for (Operation<T> move : node.getOperations()) {
             int t = search(move.getNode(), costToNode + move.getCost(), threshold);
             if (t == FOUND) {
                 pathToGoal.addFirst(node);

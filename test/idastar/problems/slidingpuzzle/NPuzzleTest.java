@@ -1,6 +1,6 @@
 package idastar.problems.slidingpuzzle;
 
-import idastar.problems.Move;
+import idastar.problems.Operation;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -10,11 +10,11 @@ import java.util.List;
 
 public class NPuzzleTest {
 
-    private NPuzzle eightPuzzle;
+    private NPuzzleState eightPuzzle;
 
     @Before
     public void setUp() {
-        eightPuzzle = NPuzzle.createEightPuzzle(new int[][]{
+        eightPuzzle = NPuzzleState.createEightPuzzle(new int[][]{
             {1, 3, 2},
             {4, 7, 5},
             {0, 6, 8}
@@ -33,12 +33,12 @@ public class NPuzzleTest {
     @Test
     public void testGetNumberAtCoordinate() {
         assertEquals(2, eightPuzzle.getNumberAtCoordinate(2, 0));
-        assertEquals(NPuzzle.EMPTY_SPACE, eightPuzzle.getNumberAtCoordinate(0, 2));
+        assertEquals(NPuzzleState.EMPTY_SPACE, eightPuzzle.getNumberAtCoordinate(0, 2));
     }
 
     @Test
     public void testEquals_notEqual_differentSize() {
-        NPuzzle fifteenPuzzle = NPuzzle.createFifteenPuzzle(new int[][]{
+        NPuzzleState fifteenPuzzle = NPuzzleState.createFifteenPuzzle(new int[][]{
             {1, 3, 2, 9},
             {4, 7, 5, 10},
             {0, 6, 8, 11},
@@ -49,7 +49,7 @@ public class NPuzzleTest {
 
     @Test
     public void testEquals_equal_other() {
-        NPuzzle other = NPuzzle.createEightPuzzle(new int[][]{
+        NPuzzleState other = NPuzzleState.createEightPuzzle(new int[][]{
             {1, 3, 2},
             {4, 7, 5},
             {0, 6, 8}
@@ -59,59 +59,59 @@ public class NPuzzleTest {
 
     @Test
     public void testGetMoves_emptySpaceInCorner() {
-        Move<NPuzzle> optionOne = new Move<>(NPuzzle.createEightPuzzle(new int[][]{
+        Operation<NPuzzleState> optionOne = new Operation<>(NPuzzleState.createEightPuzzle(new int[][]{
             {1, 3, 2},
             {4, 7, 5},
             {6, 0, 8}
-        }), NPuzzle.COST_TO_MOVE);
+        }), NPuzzleState.COST_TO_MOVE);
 
-        Move<NPuzzle> optionTwo = new Move<>(NPuzzle.createEightPuzzle(new int[][]{
+        Operation<NPuzzleState> optionTwo = new Operation<>(NPuzzleState.createEightPuzzle(new int[][]{
             {1, 3, 2},
             {0, 7, 5},
             {4, 6, 8}
-        }), NPuzzle.COST_TO_MOVE);
+        }), NPuzzleState.COST_TO_MOVE);
 
-        List<Move<NPuzzle>> expected = Arrays.asList(optionOne, optionTwo);
+        List<Operation<NPuzzleState>> expected = Arrays.asList(optionOne, optionTwo);
         assertEquals(new HashSet<>(expected),
-                new HashSet<>(eightPuzzle.getMoves()));
+                new HashSet<>(eightPuzzle.getOperations()));
     }
 
     @Test
     public void testGetMoves_emptySpaceInMiddle() {
-        eightPuzzle = NPuzzle.createEightPuzzle(new int[][]{
+        eightPuzzle = NPuzzleState.createEightPuzzle(new int[][]{
             {1, 3, 2},
             {4, 0, 5},
             {7, 6, 8}
         });
 
-        Move<NPuzzle> optionOne = new Move<>(NPuzzle.createEightPuzzle(new int[][]{
+        Operation<NPuzzleState> optionOne = new Operation<>(NPuzzleState.createEightPuzzle(new int[][]{
             {1, 0, 2},
             {4, 3, 5},
             {7, 6, 8}
-        }), NPuzzle.COST_TO_MOVE);
+        }), NPuzzleState.COST_TO_MOVE);
 
-        Move<NPuzzle> optionTwo = new Move<>(NPuzzle.createEightPuzzle(new int[][]{
+        Operation<NPuzzleState> optionTwo = new Operation<>(NPuzzleState.createEightPuzzle(new int[][]{
             {1, 3, 2},
             {4, 5, 0},
             {7, 6, 8}
-        }), NPuzzle.COST_TO_MOVE);
+        }), NPuzzleState.COST_TO_MOVE);
 
-        Move<NPuzzle> optionThree = new Move<>(NPuzzle.createEightPuzzle(new int[][]{
+        Operation<NPuzzleState> optionThree = new Operation<>(NPuzzleState.createEightPuzzle(new int[][]{
             {1, 3, 2},
             {4, 6, 5},
             {7, 0, 8}
-        }), NPuzzle.COST_TO_MOVE);
+        }), NPuzzleState.COST_TO_MOVE);
 
-        Move<NPuzzle> optionFour = new Move<>(NPuzzle.createEightPuzzle(new int[][]{
+        Operation<NPuzzleState> optionFour = new Operation<>(NPuzzleState.createEightPuzzle(new int[][]{
             {1, 3, 2},
             {0, 4, 5},
             {7, 6, 8}
-        }), NPuzzle.COST_TO_MOVE);
+        }), NPuzzleState.COST_TO_MOVE);
 
 
-        List<Move<NPuzzle>> expected =
+        List<Operation<NPuzzleState>> expected =
                 Arrays.asList(optionOne, optionTwo, optionThree, optionFour);
         assertEquals(new HashSet<>(expected),
-                new HashSet<>(eightPuzzle.getMoves()));
+                new HashSet<>(eightPuzzle.getOperations()));
     }
 }

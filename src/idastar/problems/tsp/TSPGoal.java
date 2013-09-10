@@ -1,21 +1,15 @@
 package idastar.problems.tsp;
 
 import idastar.problems.Goal;
-import idastar.problems.Heuristic;
 
 /**
  *
  * @author harbu
  */
-public class TSPGoal implements Goal<TSP> {
+public class TSPGoal implements Goal<TSPState> {
 
     @Override
-    public boolean isGoalReached(TSP currentState) {
+    public boolean isGoalReached(TSPState currentState) {
         return currentState.isReturnedHome();
-    }
-
-    @Override
-    public Heuristic<TSP> getHeuristic() {
-        return new TSPHeuristic();
     }
 }

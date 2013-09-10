@@ -1,9 +1,10 @@
-package idastar.problems.constraint;
+package idastar.problems.constraint.impl;
 
+import idastar.problems.constraint.ConstraintSatisfactionState;
 import java.util.HashSet;
 import java.util.Set;
 
-public class NQueensProblem extends ConstraintSatisfactionProblem {
+public class NQueensProblem extends ConstraintSatisfactionState {
     
     private int n;
 
@@ -37,7 +38,7 @@ public class NQueensProblem extends ConstraintSatisfactionProblem {
     }
 
     @Override
-    protected ConstraintSatisfactionProblem copy() {
+    protected ConstraintSatisfactionState copy() {
         return new NQueensProblem(this);
     }
 

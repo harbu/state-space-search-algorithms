@@ -1,30 +1,24 @@
 package idastar.problems.slidingpuzzle;
 
 import idastar.problems.Goal;
-import idastar.problems.Heuristic;
-import idastar.problems.Problem;
+import idastar.problems.State;
 
 /**
  *
  * @author harbu
  */
-public class NPuzzleGoal implements Goal {
+public class NPuzzleGoal implements Goal<NPuzzleState> {
 
-    private final NPuzzle goalState;
+    private final NPuzzleState goalState;
     private final NPuzzleHeuristic heuristic;
 
-    public NPuzzleGoal(NPuzzle goalState) {
+    public NPuzzleGoal(NPuzzleState goalState) {
         this.goalState = goalState;
         this.heuristic = new NPuzzleHeuristic(goalState);
     }
 
     @Override
-    public boolean isGoalReached(Problem currentState) {
+    public boolean isGoalReached(NPuzzleState currentState) {
         return currentState.equals(goalState);
-    }
-
-    @Override
-    public Heuristic getHeuristic() {
-        return heuristic;
     }
 }

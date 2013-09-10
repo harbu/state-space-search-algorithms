@@ -3,13 +3,13 @@ package idastar.problems.slidingpuzzle;
 import idastar.problems.Heuristic;
 import idastar.util.Coordinate;
 
-public class NPuzzleHeuristic implements Heuristic<NPuzzle> {
+public class NPuzzleHeuristic implements Heuristic<NPuzzleState> {
     
     private final int n;
-    private final NPuzzle goalState;
+    private final NPuzzleState goalState;
     private Coordinate[] numberToCoordinate;
     
-    public NPuzzleHeuristic(NPuzzle goalState) {
+    public NPuzzleHeuristic(NPuzzleState goalState) {
         this.n = goalState.getN();
         this.goalState = goalState;
         this.numberToCoordinate = new Coordinate[16];
@@ -17,7 +17,7 @@ public class NPuzzleHeuristic implements Heuristic<NPuzzle> {
     }
     
     @Override
-    public int calculate(NPuzzle state) {
+    public int calculate(NPuzzleState state) {
         
         if (state.getN() != n) {
             throw new NPuzzleException("Incompatible puzzle dimensions.");
@@ -27,7 +27,7 @@ public class NPuzzleHeuristic implements Heuristic<NPuzzle> {
         for (int y = 0; y < n; ++y) {
             for (int x = 0; x < n; ++x) {
                 int number = state.getNumberAtCoordinate(x, y);
-                if (number != NPuzzle.EMPTY_SPACE) {
+                if (number != NPuzzleState.EMPTY_SPACE) {
                     Coordinate coord = new Coordinate(x, y);
                     Coordinate goalCoord = numberToCoordinate[number];
                     sum += Coordinate.manhattanDistance(coord, goalCoord);

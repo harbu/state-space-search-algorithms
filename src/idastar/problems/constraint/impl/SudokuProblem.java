@@ -1,5 +1,6 @@
-package idastar.problems.constraint;
+package idastar.problems.constraint.impl;
 
+import idastar.problems.constraint.ConstraintSatisfactionState;
 import idastar.util.TwoDIndexConverter;
 import java.util.HashSet;
 import java.util.Set;
@@ -8,7 +9,7 @@ import java.util.Set;
  *
  * @author andrews
  */
-public class SudokuProblem extends ConstraintSatisfactionProblem {
+public class SudokuProblem extends ConstraintSatisfactionState {
 
     public static final int NUM_OF_ROWS = 9;
     public static final TwoDIndexConverter indexConverter = new TwoDIndexConverter(NUM_OF_ROWS);
@@ -49,7 +50,7 @@ public class SudokuProblem extends ConstraintSatisfactionProblem {
     }
 
     @Override
-    protected ConstraintSatisfactionProblem copy() {
+    protected ConstraintSatisfactionState copy() {
         return new SudokuProblem(this);
     }
 

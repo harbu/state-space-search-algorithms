@@ -1,5 +1,8 @@
-package idastar.problems.constraint;
+package idastar.problems.constraint.impl;
 
+
+
+import idastar.problems.constraint.Constraint;
 import java.util.List;
 import java.util.Set;
 

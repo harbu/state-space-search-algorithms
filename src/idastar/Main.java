@@ -3,14 +3,13 @@ package idastar;
 import idastar.algorithm.AStar;
 import idastar.algorithm.Algorithm;
 import idastar.algorithm.BruteForceSearch;
+import idastar.problems.slidingpuzzle.NPuzzleState;
+import idastar.problems.constraint.ConstraintSatisfaction;
+import idastar.problems.constraint.impl.NQueensProblem;
+import idastar.problems.constraint.impl.SudokuProblem;
 import idastar.problems.slidingpuzzle.NPuzzle;
-import idastar.problems.Problem;
-import idastar.problems.constraint.ConstraintSatisfactionGoal;
-import idastar.problems.constraint.NQueensProblem;
-import idastar.problems.constraint.SudokuProblem;
-import idastar.problems.slidingpuzzle.NPuzzleGoal;
 import idastar.problems.tsp.TSP;
-import idastar.problems.tsp.TSPGoal;
+import idastar.problems.tsp.TSPState;
 import idastar.util.CompleteGraph;
 import idastar.util.ProblemRandomizer;
 import java.util.Arrays;
@@ -22,19 +21,19 @@ import java.util.Arrays;
 public class Main {
     
     public static void main(String[] args) {
-        sudoku();
+        queens();
     }
 
     public static void slidingPuzzle() {
-        Problem goal = NPuzzle.createFifteenPuzzle(new int[][]{
+        NPuzzleState goal = NPuzzleState.createFifteenPuzzle(new int[][]{
             {1, 2, 3, 4},
             {5, 6, 7, 8},
             {9, 10, 11, 12},
             {13, 14, 15, 0}
         });
 
-        Problem start = ProblemRandomizer.randomizeProblem(goal);
-        Algorithm<NPuzzle> a = new AStar(start, new NPuzzleGoal((NPuzzle) goal));
+        NPuzzleState start = ProblemRandomizer.randomizeProblem(goal);
+        Algorithm<NPuzzleState> a = new AStar<>(new NPuzzle(start, goal));
         a.solve();
         System.out.println(start);
         System.out.println("-----");
@@ -72,8 +71,8 @@ public class Main {
                 }
         );
         
-        Problem start = TSP.makeTSPStart(graph, "Vantaa");
-        Algorithm<TSP> a = new AStar(start, new TSPGoal());
+        TSPState start = TSPState.makeTSPStart(graph, "Vantaa");
+        Algorithm<TSPState> a = new AStar<>(new TSP(start));
         a.solve();
         System.out.println(start);
         System.out.println("-----");
@@ -83,8 +82,9 @@ public class Main {
     
     public static void queens() {
         NQueensProblem problem = new NQueensProblem(100);
-        Algorithm algorithm = new BruteForceSearch(problem,
-                new ConstraintSatisfactionGoal(), BruteForceSearch.SearchType.DEPTH_FIRST);
+        Algorithm algorithm = new BruteForceSearch(
+                new ConstraintSatisfaction(problem),
+                BruteForceSearch.SearchType.DEPTH_FIRST);
         algorithm.solve();
         System.out.println(algorithm.getPathToGoal().get(algorithm.getPathToGoal().size()-1));
     }
@@ -101,8 +101,9 @@ public class Main {
             {0, 0, 0, 4, 1, 9, 0, 0, 5},
             {0, 0, 0, 0, 8, 0, 0, 7, 9}
         });
-        Algorithm algorithm = new BruteForceSearch(problem,
-                new ConstraintSatisfactionGoal(), BruteForceSearch.SearchType.DEPTH_FIRST);
+        Algorithm algorithm = new BruteForceSearch<>(
+                new ConstraintSatisfaction(problem),
+                BruteForceSearch.SearchType.DEPTH_FIRST);
         algorithm.solve();
         System.out.println(algorithm.getPathToGoal());
     }

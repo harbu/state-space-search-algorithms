@@ -1,8 +1,8 @@
 package idastar.algorithm;
 
-import idastar.problems.Problem;
+import idastar.problems.State;
 
-public class QueueEntry<T extends Problem<T>> implements Comparable<QueueEntry<T>> {
+public class QueueEntry<T extends State<T>> implements Comparable<QueueEntry<T>> {
 
     private final T node;
     private final int g;

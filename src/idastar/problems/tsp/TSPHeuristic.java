@@ -15,10 +15,10 @@ import java.util.Set;
  *
  * @author harbu
  */
-public class TSPHeuristic implements Heuristic<TSP> {
+public class TSPHeuristic implements Heuristic<TSPState> {
 
     @Override
-    public int calculate(TSP node) {
+    public int calculate(TSPState node) {
         int total = 0;
         List<String> nodesHandled = new ArrayList<>();
         Set<String> nodesLeft = new HashSet<>(node.getCitiesNotYetVisited());

@@ -1,8 +1,8 @@
 package idastar.algorithm;
 
-import idastar.problems.Goal;
-import idastar.problems.Move;
+import idastar.problems.Operation;
 import idastar.problems.Problem;
+import idastar.problems.State;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -10,7 +10,7 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Set;
 
-public class BruteForceSearch<T extends Problem<T>> extends Algorithm<T> {
+public class BruteForceSearch<T extends State<T>> extends Algorithm<T> {
     private final SearchType searchType;
 
     public enum SearchType {
@@ -18,8 +18,8 @@ public class BruteForceSearch<T extends Problem<T>> extends Algorithm<T> {
         DEPTH_FIRST
     }
 
-    public BruteForceSearch(T start, Goal<T> goal, SearchType searchType) {
-        super(start, goal);
+    public BruteForceSearch(Problem<T> problem, SearchType searchType) {
+        super(problem);
         this.searchType = searchType;
     }
 
@@ -41,7 +41,7 @@ public class BruteForceSearch<T extends Problem<T>> extends Algorithm<T> {
                 return true;
             }
             
-            for (Move<T> move : node.getMoves()) {
+            for (Operation<T> move : node.getOperations()) {
                 T neighbour = move.getNode();
                 if (!closedSet.contains(neighbour)) {
                     pathTo.put(neighbour, node);

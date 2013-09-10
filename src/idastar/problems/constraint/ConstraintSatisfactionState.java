@@ -1,7 +1,7 @@
 package idastar.problems.constraint;
 
-import idastar.problems.Move;
-import idastar.problems.Problem;
+import idastar.problems.Operation;
+import idastar.problems.State;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -13,14 +13,14 @@ import java.util.Set;
  *
  * @author harbu
  */
-public class ConstraintSatisfactionProblem implements Problem<ConstraintSatisfactionProblem> {
+public class ConstraintSatisfactionState implements State<ConstraintSatisfactionState> {
 
     private static final int NO_MORE_MOVES_INDEX = -1;
     private Constraint constraint;
     private Integer[] variables;
     private List<Set<Integer>> domains;
 
-    public ConstraintSatisfactionProblem(int numOfVariables, Set<Integer> startDomain, Constraint constraint) {
+    public ConstraintSatisfactionState(int numOfVariables, Set<Integer> startDomain, Constraint constraint) {
         this.constraint = constraint;
         this.variables = new Integer[numOfVariables];
         this.domains = new ArrayList<>(numOfVariables);
@@ -30,7 +30,7 @@ public class ConstraintSatisfactionProblem implements Problem<ConstraintSatisfac
         }
     }
     
-    protected ConstraintSatisfactionProblem(ConstraintSatisfactionProblem original) {
+    protected ConstraintSatisfactionState(ConstraintSatisfactionState original) {
         this.constraint = original.constraint;
         this.variables = Arrays.copyOf(original.variables, original.variables.length);
         this.domains = deepCopyDomains(original.domains);
@@ -42,15 +42,15 @@ public class ConstraintSatisfactionProblem implements Problem<ConstraintSatisfac
     }
 
     @Override
-    public List<Move<ConstraintSatisfactionProblem>> getMoves() {
-        List<Move<ConstraintSatisfactionProblem>> moves = new ArrayList<>();
+    public List<Operation<ConstraintSatisfactionState>> getOperations() {
+        List<Operation<ConstraintSatisfactionState>> moves = new ArrayList<>();
         int varIndex = chooseNextVarIndex();
         
         if (varIndex != NO_MORE_MOVES_INDEX) {
             for (Integer value : domains.get(varIndex)) {
-                ConstraintSatisfactionProblem childState = copy();
+                ConstraintSatisfactionState childState = copy();
                 childState.makeMove(varIndex, value);
-                moves.add(new Move<>(childState, 1));
+                moves.add(new Operation<>(childState, 1));
             }
         }
 
@@ -63,10 +63,10 @@ public class ConstraintSatisfactionProblem implements Problem<ConstraintSatisfac
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == null || !(obj instanceof ConstraintSatisfactionProblem)) {
+        if (obj == null || !(obj instanceof ConstraintSatisfactionState)) {
             return false;
         } else {
-            ConstraintSatisfactionProblem o = (ConstraintSatisfactionProblem) obj;
+            ConstraintSatisfactionState o = (ConstraintSatisfactionState) obj;
             return this.domains.equals(o.domains)
                     && this.constraint == o.constraint
                     && Arrays.equals(this.variables, o.variables);
@@ -97,8 +97,8 @@ public class ConstraintSatisfactionProblem implements Problem<ConstraintSatisfac
         return str;
     }
     
-    protected ConstraintSatisfactionProblem copy() {
-        return new ConstraintSatisfactionProblem(this);
+    protected ConstraintSatisfactionState copy() {
+        return new ConstraintSatisfactionState(this);
     }
 
     private List<Set<Integer>> deepCopyDomains(List<Set<Integer>> domains) {

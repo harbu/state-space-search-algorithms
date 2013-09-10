@@ -1,6 +1,6 @@
 package idastar.problems.slidingpuzzle;
 
-import static idastar.problems.slidingpuzzle.NPuzzle.EMPTY_SPACE;
+import static idastar.problems.slidingpuzzle.NPuzzleState.EMPTY_SPACE;
 
 public class NPuzzleException extends RuntimeException {
 

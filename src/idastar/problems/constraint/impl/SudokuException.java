@@ -1,4 +1,4 @@
-package idastar.problems.constraint;
+package idastar.problems.constraint.impl;
 
 /**
  *

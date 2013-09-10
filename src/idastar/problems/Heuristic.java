@@ -1,6 +1,6 @@
 package idastar.problems;
 
-public interface Heuristic<T extends Problem<T>> {
+public interface Heuristic<T extends State<T>> {
 
     public int calculate(T node);
 }

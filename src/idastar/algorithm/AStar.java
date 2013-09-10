@@ -1,8 +1,8 @@
 package idastar.algorithm;
 
-import idastar.problems.Goal;
-import idastar.problems.Move;
+import idastar.problems.Operation;
 import idastar.problems.Problem;
+import idastar.problems.State;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -17,10 +17,10 @@ import java.util.Set;
  * uniform-cost search.
  * 
  */
-public class AStar<T extends Problem<T>> extends Algorithm<T> {
+public class AStar<T extends State<T>> extends Algorithm<T> {
 
-    public AStar(T start, Goal<T> goal) {
-        super(start, goal);
+    public AStar(Problem<T> problem) {
+        super(problem);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class AStar<T extends Problem<T>> extends Algorithm<T> {
                 return true;
             }
 
-            for (Move<T> move : current.getNode().getMoves()) {
+            for (Operation<T> move : current.getNode().getOperations()) {
                 T neighbour = move.getNode();
                 if (!closedSet.contains(neighbour)) {
                     int tentativeG = current.getG() + move.getCost();

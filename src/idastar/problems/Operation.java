@@ -2,12 +2,12 @@ package idastar.problems;
 
 import java.util.Objects;
 
-public class Move<T extends Problem<T>> {
+public class Operation<T extends State<T>> {
 
     private final T node;
     private final int cost;
 
-    public Move(T node, int cost) {
+    public Operation(T node, int cost) {
         this.node = node;
         this.cost = cost;
     }
@@ -22,10 +22,10 @@ public class Move<T extends Problem<T>> {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == null || !(obj instanceof Move)) {
+        if (obj == null || !(obj instanceof Operation)) {
             return false;
         } else {
-            Move other = (Move) obj;
+            Operation other = (Operation) obj;
             return this.getNode().equals(other.getNode())
                     && this.getCost() == other.getCost();
         }
