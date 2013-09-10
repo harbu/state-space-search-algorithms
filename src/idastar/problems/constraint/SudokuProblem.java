@@ -1,8 +1,6 @@
 package idastar.problems.constraint;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -10,6 +8,8 @@ import java.util.Set;
  * @author andrews
  */
 public class SudokuProblem extends ConstraintSatisfactionProblem {
+    
+    public static final int NUM_OF_ROWS = 9;
     
     public SudokuProblem(int[][] layout) {
         super(numOfVariables(layout), makeDomain(), new SudokuConstraint());
