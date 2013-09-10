@@ -18,7 +18,7 @@ public abstract class Algorithm<T extends State<T>> {
     protected final T start;
     protected final Goal<T> goal;
     protected final Heuristic<T> heuristic;
-    protected LinkedList<State<T>> pathToGoal;
+    protected LinkedList<T> pathToGoal;
 
     public Algorithm(Problem<T> problem) {
         this.start = problem.getStartState();
@@ -26,7 +26,7 @@ public abstract class Algorithm<T extends State<T>> {
         this.heuristic = problem.getHeuristic();
     }
 
-    public List<State<T>> getPathToGoal() {
+    public List<T> getPathToGoal() {
         return pathToGoal;
     }
 

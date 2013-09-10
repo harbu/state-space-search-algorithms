@@ -9,17 +9,17 @@ import java.util.Set;
  *
  * @author andrews
  */
-public class SudokuProblem extends ConstraintSatisfactionState {
+public class SudokuState extends ConstraintSatisfactionState {
 
     public static final int NUM_OF_ROWS = 9;
     public static final TwoDIndexConverter indexConverter = new TwoDIndexConverter(NUM_OF_ROWS);
 
-    public SudokuProblem(int[][] layout) {
+    public SudokuState(int[][] layout) {
         super(numOfVariables(layout), makeDomain(), new SudokuConstraint());
         doInitialMoves(layout);
     }
 
-    private SudokuProblem(SudokuProblem original) {
+    private SudokuState(SudokuState original) {
         super(original);
     }
 
@@ -27,7 +27,7 @@ public class SudokuProblem extends ConstraintSatisfactionState {
     public String toString() {
         String str = "";
         for (int row = 0; row < NUM_OF_ROWS; ++row) {
-            if (row % 3 == 0) {
+            if (row != 0 && row % 3 == 0) {
                 str += "\n";
             }
             for (int col = 0; col < NUM_OF_ROWS; ++col) {
@@ -51,7 +51,7 @@ public class SudokuProblem extends ConstraintSatisfactionState {
 
     @Override
     protected ConstraintSatisfactionState copy() {
-        return new SudokuProblem(this);
+        return new SudokuState(this);
     }
 
     private static int numOfVariables(int[][] layout) {

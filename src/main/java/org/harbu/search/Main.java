@@ -6,7 +6,7 @@ import org.harbu.search.algorithm.BruteForceSearch;
 import org.harbu.search.problem.slidingpuzzle.NPuzzleState;
 import org.harbu.search.problem.constraint.ConstraintSatisfaction;
 import org.harbu.search.problem.constraint.impl.NQueensProblem;
-import org.harbu.search.problem.constraint.impl.SudokuProblem;
+import org.harbu.search.problem.constraint.impl.SudokuState;
 import org.harbu.search.problem.slidingpuzzle.NPuzzle;
 import org.harbu.search.problem.tsp.TSP;
 import org.harbu.search.problem.tsp.TSPState;
@@ -21,7 +21,7 @@ import java.util.Arrays;
 public class Main {
     
     public static void main(String[] args) {
-        queens();
+        sudoku();
     }
 
     public static void slidingPuzzle() {
@@ -90,7 +90,7 @@ public class Main {
     }
     
      public static void sudoku() {
-        SudokuProblem problem = new SudokuProblem(new int[][]{
+        SudokuState problem = new SudokuState(new int[][]{
             {5, 3, 0, 0, 7, 0, 0, 0, 0},
             {6, 0, 0, 1, 9, 5, 0, 0, 0},
             {0, 9, 8, 0, 0, 0, 0, 6, 0},

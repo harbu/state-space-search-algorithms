@@ -1,8 +1,8 @@
 package org.harbu.search.problem.constraint.impl;
 
 import org.harbu.search.problem.constraint.Constraint;
-import static org.harbu.search.problem.constraint.impl.SudokuProblem.NUM_OF_ROWS;
-import static org.harbu.search.problem.constraint.impl.SudokuProblem.indexConverter;
+import static org.harbu.search.problem.constraint.impl.SudokuState.NUM_OF_ROWS;
+import static org.harbu.search.problem.constraint.impl.SudokuState.indexConverter;
 import org.harbu.search.util.Coordinate;
 import java.util.List;
 import java.util.Set;
@@ -34,7 +34,6 @@ class SudokuConstraint implements Constraint {
                 int index = indexConverter.twoDTo1D(
                         firstElemOfSubgridRow + i,
                         firstElemOfSubgridCol + j);
-                System.out.println(index);
                 domains.get(index).remove(valueChosen);
             }
         }
