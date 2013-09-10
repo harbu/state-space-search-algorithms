@@ -3,11 +3,11 @@ package idastar;
 import idastar.algorithm.AStar;
 import idastar.algorithm.Algorithm;
 import idastar.algorithm.BruteForceSearch;
-import idastar.algorithm.IDAStar;
 import idastar.problems.slidingpuzzle.NPuzzle;
 import idastar.problems.Problem;
 import idastar.problems.constraint.ConstraintSatisfactionGoal;
 import idastar.problems.constraint.NQueensProblem;
+import idastar.problems.constraint.SudokuProblem;
 import idastar.problems.slidingpuzzle.NPuzzleGoal;
 import idastar.problems.tsp.TSP;
 import idastar.problems.tsp.TSPGoal;
@@ -22,7 +22,7 @@ import java.util.Arrays;
 public class Main {
     
     public static void main(String[] args) {
-        queens();
+        sudoku();
     }
 
     public static void slidingPuzzle() {
@@ -82,10 +82,28 @@ public class Main {
     }
     
     public static void queens() {
-        NQueensProblem problem = new NQueensProblem(20);
+        NQueensProblem problem = new NQueensProblem(100);
         Algorithm algorithm = new BruteForceSearch(problem,
                 new ConstraintSatisfactionGoal(), BruteForceSearch.SearchType.DEPTH_FIRST);
         algorithm.solve();
         System.out.println(algorithm.getPathToGoal().get(algorithm.getPathToGoal().size()-1));
+    }
+    
+     public static void sudoku() {
+        SudokuProblem problem = new SudokuProblem(new int[][]{
+            {5, 3, 0, 0, 7, 0, 0, 0, 0},
+            {6, 0, 0, 1, 9, 5, 0, 0, 0},
+            {0, 9, 8, 0, 0, 0, 0, 6, 0},
+            {8, 0, 0, 0, 6, 0, 0, 0, 3},
+            {4, 0, 0, 8, 0, 3, 0, 0, 1},
+            {7, 0, 0, 0, 2, 0, 0, 0, 6},
+            {0, 6, 0, 0, 0, 0, 2, 8, 0},
+            {0, 0, 0, 4, 1, 9, 0, 0, 5},
+            {0, 0, 0, 0, 8, 0, 0, 7, 9}
+        });
+        Algorithm algorithm = new BruteForceSearch(problem,
+                new ConstraintSatisfactionGoal(), BruteForceSearch.SearchType.DEPTH_FIRST);
+        algorithm.solve();
+        System.out.println(algorithm.getPathToGoal());
     }
 }

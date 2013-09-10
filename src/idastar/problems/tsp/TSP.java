@@ -1,11 +1,5 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package idastar.problems.tsp;
 
-import idastar.problems.NoHeuristic;
-import idastar.problems.Heuristic;
 import idastar.problems.Move;
 import idastar.problems.Problem;
 import idastar.util.CompleteGraph;

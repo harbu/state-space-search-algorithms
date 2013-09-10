@@ -12,9 +12,9 @@ public class NQueensProblem extends ConstraintSatisfactionProblem {
         this.n = n;
     }
 
-    private NQueensProblem(NQueensProblem previous, Integer value) {
-        super(previous, value);
-        this.n = previous.n;
+    private NQueensProblem(NQueensProblem original) {
+        super(original);
+        this.n = original.n;
     }
 
     @Override
@@ -37,8 +37,8 @@ public class NQueensProblem extends ConstraintSatisfactionProblem {
     }
 
     @Override
-    protected ConstraintSatisfactionProblem makeMove(Integer value) {
-        return new NQueensProblem(this, value);
+    protected ConstraintSatisfactionProblem copy() {
+        return new NQueensProblem(this);
     }
 
     private static Set<Integer> integersFromZeroTo(int n) {

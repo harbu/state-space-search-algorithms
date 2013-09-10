@@ -4,7 +4,6 @@ import idastar.problems.Move;
 import org.junit.*;
 import static org.junit.Assert.*;
 
-import idastar.problems.slidingpuzzle.NPuzzle;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;

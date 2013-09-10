@@ -16,13 +16,11 @@ import java.util.Set;
 public class ConstraintSatisfactionProblem implements Problem<ConstraintSatisfactionProblem> {
 
     private static final int NO_MORE_MOVES_INDEX = -1;
-    private int varIndex;
     private Constraint constraint;
     private Integer[] variables;
     private List<Set<Integer>> domains;
 
     public ConstraintSatisfactionProblem(int numOfVariables, Set<Integer> startDomain, Constraint constraint) {
-        this.varIndex = 0;
         this.constraint = constraint;
         this.variables = new Integer[numOfVariables];
         this.domains = new ArrayList<>(numOfVariables);
@@ -31,18 +29,36 @@ public class ConstraintSatisfactionProblem implements Problem<ConstraintSatisfac
             domains.add(new HashSet<>(startDomain));
         }
     }
+    
+    protected ConstraintSatisfactionProblem(ConstraintSatisfactionProblem original) {
+        this.constraint = original.constraint;
+        this.variables = Arrays.copyOf(original.variables, original.variables.length);
+        this.domains = deepCopyDomains(original.domains);
+    }
+    
+    protected void makeMove(int varIndex, Integer valueChosen) {
+        variables[varIndex] = valueChosen;
+        constraint.apply(varIndex, valueChosen, domains);
+    }
 
     @Override
     public List<Move<ConstraintSatisfactionProblem>> getMoves() {
         List<Move<ConstraintSatisfactionProblem>> moves = new ArrayList<>();
+        int varIndex = chooseNextVarIndex();
+        
         if (varIndex != NO_MORE_MOVES_INDEX) {
             for (Integer value : domains.get(varIndex)) {
-                ConstraintSatisfactionProblem childState = makeMove(value);
+                ConstraintSatisfactionProblem childState = copy();
+                childState.makeMove(varIndex, value);
                 moves.add(new Move<>(childState, 1));
             }
         }
 
         return moves;
+    }
+    
+    public Integer[] getVariables() {
+        return variables;
     }
 
     @Override
@@ -51,7 +67,7 @@ public class ConstraintSatisfactionProblem implements Problem<ConstraintSatisfac
             return false;
         } else {
             ConstraintSatisfactionProblem o = (ConstraintSatisfactionProblem) obj;
-            return this.varIndex == o.varIndex
+            return this.domains.equals(o.domains)
                     && this.constraint == o.constraint
                     && Arrays.equals(this.variables, o.variables);
         }
@@ -60,28 +76,29 @@ public class ConstraintSatisfactionProblem implements Problem<ConstraintSatisfac
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 29 * hash + this.varIndex;
-        hash = 29 * hash + Objects.hashCode(this.constraint);
-        hash = 29 * hash + Arrays.deepHashCode(this.variables);
+        hash = 13 * hash + Objects.hashCode(this.constraint);
+        hash = 13 * hash + Arrays.deepHashCode(this.variables);
+        hash = 13 * hash + Objects.hashCode(this.domains);
         return hash;
     }
 
-    public Integer[] getVariables() {
-        return variables;
+    @Override
+    public String toString() {
+        String str = "";
+        for (int i=0; i < variables.length; ++i) {
+            str += "Variable " + i + ": ";
+            if (variables[i] == null) {
+                str += domains.get(i);
+            } else {
+                str += variables[i];
+            }
+            str += "\n";
+        }
+        return str;
     }
     
-    protected ConstraintSatisfactionProblem makeMove(Integer value) {
-        return new ConstraintSatisfactionProblem(this, value);
-    }
-
-    protected ConstraintSatisfactionProblem(ConstraintSatisfactionProblem previous, Integer valueChosen) {
-        this.constraint = previous.constraint;
-        this.variables = Arrays.copyOf(previous.variables, previous.variables.length);
-        this.variables[previous.varIndex] = valueChosen;
-        this.domains = deepCopyDomains(previous.domains);
-        constraint.apply(previous.varIndex, valueChosen, this.domains);
-        this.varIndex = chooseNextVarIndex();
-
+    protected ConstraintSatisfactionProblem copy() {
+        return new ConstraintSatisfactionProblem(this);
     }
 
     private List<Set<Integer>> deepCopyDomains(List<Set<Integer>> domains) {

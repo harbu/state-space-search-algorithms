@@ -44,6 +44,11 @@ public class Coordinate {
         return hash;
     }
 
+    @Override
+    public String toString() {
+        return String.format("(%d, %d)", x, y);
+    }
+
     public static int manhattanDistance(Coordinate c1, Coordinate c2) {
         int dx = c1.getX() - c2.getX();
         int dy = c1.getY() - c2.getY();
