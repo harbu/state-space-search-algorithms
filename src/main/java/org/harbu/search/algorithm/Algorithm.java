@@ -7,6 +7,12 @@ import org.harbu.search.problem.State;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * The superclass for all search algorithms.
+ *
+ * @author Eric Andrews
+ * @param <T> the state space type
+ */
 public abstract class Algorithm<T extends State<T>> {
 
     protected final T start;

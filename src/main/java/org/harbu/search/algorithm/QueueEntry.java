@@ -2,6 +2,12 @@ package org.harbu.search.algorithm;
 
 import org.harbu.search.problem.State;
 
+/**
+ * A helper data structure for <code>AStar</code>.
+ *
+ * @author Eric Andrews
+ * @param <T> the search state type
+ */
 public class QueueEntry<T extends State<T>> implements Comparable<QueueEntry<T>> {
 
     private final T node;

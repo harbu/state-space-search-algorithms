@@ -13,9 +13,19 @@ import java.util.Set;
 /**
  * A*-star best-first search algorithm implementation.
  * 
+ * @author Eric Andrews
+ * @param  <T> the state space type
+ * 
  * When heuristic returns zero, this algorithm is essentially becomes
  * uniform-cost search.
+ *
+ * Good:
+ * + Uses heuristic to guide search.
+ * + Guaranteed to find best path.
  * 
+ * Bad:
+ * - High memory use.
+ *
  */
 public class AStar<T extends State<T>> extends Algorithm<T> {
 

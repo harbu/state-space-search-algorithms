@@ -1,6 +1,5 @@
 package org.harbu.search.algorithm;
 
-import org.harbu.search.problem.Goal;
 import org.harbu.search.problem.Problem;
 import org.harbu.search.problem.State;
 

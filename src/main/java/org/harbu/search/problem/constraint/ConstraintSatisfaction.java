@@ -5,8 +5,8 @@ import org.harbu.search.problem.NoHeuristic;
 import org.harbu.search.problem.Problem;
 
 /**
- *
- * @author harbu
+ * Represents Constraint satisfaction problems.
+ * @author Eric Andrews
  */
 public class ConstraintSatisfaction extends Problem<ConstraintSatisfactionState> {
     public ConstraintSatisfaction(ConstraintSatisfactionState startState) {
