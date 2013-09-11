@@ -1,0 +1,2 @@
+- Towers of Hanoi (vary number of disks)
+- Return structured result from Algorithm.solve().

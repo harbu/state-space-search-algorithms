@@ -20,7 +20,6 @@ public class MazeState implements State<MazeState> {
     
     private int[][] layout;
     private Coordinate position;
-    private Coordinate goal;
 
     public MazeState(int[][] layout, Coordinate startPosition) {
         this.layout = layout;
@@ -30,7 +29,6 @@ public class MazeState implements State<MazeState> {
     private MazeState(MazeState previous, Coordinate newPosition) {
         this.layout = previous.layout;
         this.position = newPosition;
-        this.goal = previous.goal;
     }
 
     public Coordinate getPosition() {
@@ -43,6 +41,7 @@ public class MazeState implements State<MazeState> {
         for (Coordinate nextPosition : neighbours()) {
             moves.add(new Operation<>(new MazeState(this, nextPosition), 1));
         }
+        System.out.println(moves);
         return moves;
     }
 
@@ -52,9 +51,7 @@ public class MazeState implements State<MazeState> {
             return false;
         } else {
             MazeState o = (MazeState) obj;
-            return this.layout == o.layout
-                    && this.position.equals(o.position)
-                    && this.goal.equals(o.goal);
+            return this.layout == o.layout && this.position.equals(o.position);
         }
     }
 
@@ -63,7 +60,6 @@ public class MazeState implements State<MazeState> {
         int hash = 7;
         hash = 31 * hash + Arrays.hashCode(this.layout);
         hash = 31 * hash + Objects.hashCode(this.position);
-        hash = 31 * hash + Objects.hashCode(this.goal);
         return hash;
     }
 

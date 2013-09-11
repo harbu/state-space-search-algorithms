@@ -1,0 +1,37 @@
+State space
+    - effectively a weighted graph G = (N, E, c) in which
+        N = set of states (nodes)
+        E = set of operators for moving between states (edges)
+        c = a cost function that assigns cost to operators / edges.
+
+Problem instance
+    state-space graph, start node and a set of goal (terminal) nodes.
+
+Minimum-cost path
+    optimal solution
+
+Shortest path
+
+Generate node
+
+Expand node
+    generate its successors
+
+Implict / explicit graph
+    explicit = the part of the whole graph (implicit) that is stored in memory.
+
+Open list
+    often priority queue, contains the frontier nodes of the explicit graph
+
+Frontier node
+    nodes that have been generated but not yet expanded.
+
+Admissible heuristic
+    never overestimates the true cost of a best path from node to goal.
+
+Consistent heuristic
+    h(n) <= c(n, n') + h(n'), for all n, n'
+    implies admissibility
+
+Duplicate detection
+    recognize and avoid regenerating already generated nodes.

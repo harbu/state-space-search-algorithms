@@ -11,7 +11,7 @@ public class MazeInput {
     private static final char START_TILE = 'S';
     private static final char GOAL_TILE = 'G';
     private static final char FLOOR_TILE = ' ';
-    private static final char WALL_TILE = 'X';
+    private static final char WALL_TILE = '#';
     
     private int[][] layout;
     private Coordinate startPosition;
