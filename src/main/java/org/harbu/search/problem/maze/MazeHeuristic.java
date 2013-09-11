@@ -17,6 +17,7 @@ public class MazeHeuristic implements Heuristic<MazeState> {
 
     @Override
     public double calculate(MazeState node) {
-        return Coordinate.manhattanDistance(node.getPosition(), goalPosition);
+        //return Coordinate.manhattaDistance(node.getPosition(), goalPosition);
+        return 0;
     }
 }

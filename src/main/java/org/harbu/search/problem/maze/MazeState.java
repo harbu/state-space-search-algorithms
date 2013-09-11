@@ -41,7 +41,6 @@ public class MazeState implements State<MazeState> {
         for (Coordinate nextPosition : neighbours()) {
             moves.add(new Operation<>(new MazeState(this, nextPosition), 1));
         }
-        System.out.println(moves);
         return moves;
     }
 
@@ -61,6 +60,24 @@ public class MazeState implements State<MazeState> {
         hash = 31 * hash + Arrays.hashCode(this.layout);
         hash = 31 * hash + Objects.hashCode(this.position);
         return hash;
+    }
+
+    @Override
+    public String toString() {
+        String str = "";
+        for (int i=0; i < layout.length; ++i) {
+            for (int j=0; j < layout[i].length; ++j) {
+                if (position.getX() == j && position.getY() == i) {
+                    str += MazeInput.START_TILE;
+                } else if (layout[i][j] == FLOOR) {
+                    str += MazeInput.FLOOR_TILE;
+                } else {
+                    str += MazeInput.WALL_TILE;
+                }
+            }
+            str += "\n";
+        }
+        return str;
     }
 
     private List<Coordinate> neighbours() {

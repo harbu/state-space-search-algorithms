@@ -62,7 +62,7 @@ public class Coordinate {
 
     @Override
     public String toString() {
-        return String.format("(%d, %d)", x, y);
+        return String.format("(%.2f, %.2f)", x, y);
     }
 
     public static double manhattanDistance(Coordinate c1, Coordinate c2) {

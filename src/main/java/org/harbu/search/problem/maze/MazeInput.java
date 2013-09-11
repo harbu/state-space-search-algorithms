@@ -8,10 +8,10 @@ import org.harbu.search.util.Coordinate;
  */
 public class MazeInput {
     
-    private static final char START_TILE = 'S';
-    private static final char GOAL_TILE = 'G';
-    private static final char FLOOR_TILE = ' ';
-    private static final char WALL_TILE = '#';
+    public static final char START_TILE = 'S';
+    public static final char GOAL_TILE = 'G';
+    public static final char FLOOR_TILE = ' ';
+    public static final char WALL_TILE = '#';
     
     private int[][] layout;
     private Coordinate startPosition;
@@ -19,6 +19,9 @@ public class MazeInput {
     
     public MazeInput(String input) {
         parseInput(input);
+        if (startPosition == null || goalPosition == null) {
+            throw new RuntimeException("Start or goal tile missing.");
+        }
     }
 
     public int[][] getLayout() {
