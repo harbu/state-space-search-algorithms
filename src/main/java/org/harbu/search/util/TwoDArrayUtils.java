@@ -26,6 +26,17 @@ public class TwoDArrayUtils {
         }
         return null;
     }
+    
+    /**
+     * Get array value at given coordinate. Truncates double to integer to perform
+     * subscripting.
+     * @param coordinate the coordinate
+     * @param array      2-d array to index
+     * @return           value at the given location
+     */
+    public static int getValueAt(Coordinate coordinate, int[][] array) {
+        return array[(int) coordinate.getY()][(int) coordinate.getX()];
+    }
 
     /**
      * Make a copy of a 2-dimensional array.

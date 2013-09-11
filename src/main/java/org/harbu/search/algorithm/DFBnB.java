@@ -4,7 +4,8 @@ import org.harbu.search.problem.Problem;
 import org.harbu.search.problem.State;
 
 /**
- * Depth-first Branch-and-Bound algorithm implementation
+ * Depth-first Branch-and-Bound algorithm implementation.
+ * Requires the search tree to be finite. 
  *
  * @author harbu
  */
@@ -16,7 +17,7 @@ public class DFBnB<T extends State<T>> extends Algorithm<T> {
 
     @Override
     public boolean solve() {
-        // TODO: implement
-        throw new UnsupportedOperationException("Not supported yet.");
+        double lowestCostSolutionSoFar = Double.POSITIVE_INFINITY;
+        return false;
     }
 }
