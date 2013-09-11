@@ -33,6 +33,6 @@ public class EdgeTest {
     @Test
     public void testToString() {
         Edge e1 = new Edge("A", "B", 300);
-        assertEquals("A --- (300) --> B", e1.toString());
+        assertEquals("A --- (300.00) --> B", e1.toString());
     }
 }

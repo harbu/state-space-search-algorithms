@@ -17,7 +17,7 @@ public class NPuzzleHeuristic implements Heuristic<NPuzzleState> {
     }
     
     @Override
-    public int calculate(NPuzzleState state) {
+    public double calculate(NPuzzleState state) {
         
         if (state.getN() != n) {
             throw new NPuzzleException("Incompatible puzzle dimensions.");

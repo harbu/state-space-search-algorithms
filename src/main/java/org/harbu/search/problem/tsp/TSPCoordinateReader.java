@@ -26,28 +26,28 @@ public class TSPCoordinateReader {
             }
             
             String label = words[NAME_INDEX];
-            int x = (int) Double.parseDouble(words[X_INDEX]);
-            int y = (int) Double.parseDouble(words[Y_INDEX]);
+            double x = Double.parseDouble(words[X_INDEX]);
+            double y = Double.parseDouble(words[Y_INDEX]);
             
             vertexLabels.add(label);
             vertexCoordinates.add(new Coordinate(x, y));
         }
         
-        int[][] distances = computePairWiseDistances(vertexCoordinates);
+        double[][] distances = computePairWiseDistances(vertexCoordinates);
         return new CompleteGraph(vertexLabels, distances);
     }
 
-    private static int[][] computePairWiseDistances(List<Coordinate> vertexCoordinates) {
+    private static double[][] computePairWiseDistances(List<Coordinate> vertexCoordinates) {
         int n = vertexCoordinates.size();
-        int[][] lowerHalfMatrix = new int[n][];
+        double[][] lowerHalfMatrix = new double[n][];
         for (int i=n-1; i > 0; --i) {
-            int[] distances = new int[i];
+            double[] distances = new double[i];
             
             Coordinate c1 = vertexCoordinates.get(i);
             
             for (int j=0; j < i; ++j) {
                 Coordinate c2 = vertexCoordinates.get(j);
-                distances[j] = (int) Coordinate.euclideanDistance(c1, c2);
+                distances[j] = Coordinate.euclideanDistance(c1, c2);
             }
             
             lowerHalfMatrix[i] = distances;

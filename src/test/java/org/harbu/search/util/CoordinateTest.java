@@ -24,6 +24,6 @@ public class CoordinateTest {
     public void testManhattanDistance() {
         Coordinate c1 = new Coordinate(3, 5);
         Coordinate c2 = new Coordinate(-3, 2);
-        assertEquals(6 + 3, Coordinate.manhattanDistance(c1, c2));
+        assertEquals(6 + 3, (int) Coordinate.manhattanDistance(c1, c2));
     }
 }

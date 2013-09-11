@@ -28,17 +28,17 @@ public class TSPCoordinateReaderTest {
         Map<String, Set<Edge>> expectedEdges = new HashMap<>();
         
         expectedEdges.put("A", new HashSet<>(Arrays.asList(
-                new Edge("A", "B", (int) Math.sqrt(50)),
-                new Edge("A", "C", (int) Math.sqrt(2)))));
+                new Edge("A", "B", Math.sqrt(50)),
+                new Edge("A", "C", Math.sqrt(2)))));
         
         expectedEdges.put("B", new HashSet<>(Arrays.asList(
-                new Edge("B", "A", (int) Math.sqrt(50)),
-                new Edge("B", "C", (int) Math.sqrt(52)))));
+                new Edge("B", "A", Math.sqrt(50)),
+                new Edge("B", "C", Math.sqrt(52)))));
         
         
         expectedEdges.put("C", new HashSet<>(Arrays.asList(
-                new Edge("C", "A", (int) Math.sqrt(2)),
-                new Edge("C", "B", (int) Math.sqrt(52)))));
+                new Edge("C", "A", Math.sqrt(2)),
+                new Edge("C", "B", Math.sqrt(52)))));
         
 
         CompleteGraph graph = TSPCoordinateReader.readCoordinateString(input);

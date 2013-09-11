@@ -1,6 +1,5 @@
 package org.harbu.search.util;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -14,17 +13,17 @@ import java.util.Set;
  */
 public class CompleteGraph {
     private final List<String> labels;
-    private final int[][] edgeCosts;
+    private final double[][] edgeCosts;
 
-    public CompleteGraph(List<String> labels, int[][] lowerHalfCostMatrix) {
+    public CompleteGraph(List<String> labels, double[][] lowerHalfCostMatrix) {
         this.labels = labels;
-        this.edgeCosts = new int[labels.size()][labels.size()];
+        this.edgeCosts = new double[labels.size()][labels.size()];
         readInLowerHalfMatrix(lowerHalfCostMatrix);
     }
     
     private CompleteGraph(CompleteGraph superGraph, List<String> labelsToRetain) {
         this.labels = labelsToRetain;
-        this.edgeCosts = new int[this.labels.size()][this.labels.size()];
+        this.edgeCosts = new double[this.labels.size()][this.labels.size()];
         
         for (int i=0; i < labels.size(); ++i) {
             String from = labels.get(i);
@@ -35,7 +34,7 @@ public class CompleteGraph {
         }
     }
     
-    public int cost(String fromLabel, String toLabel) {
+    public double cost(String fromLabel, String toLabel) {
         int from = labels.indexOf(fromLabel);
         int to = labels.indexOf(toLabel);
         return edgeCosts[from][to];
@@ -84,7 +83,7 @@ public class CompleteGraph {
     
     
 
-    private void readInLowerHalfMatrix(int[][] upperHalfCostMatrix) {
+    private void readInLowerHalfMatrix(double[][] upperHalfCostMatrix) {
         for (int row=labels.size() - 1; row != 0; --row) {
             for (int col=0; col < row; ++col) {
                 edgeCosts[row][col] = upperHalfCostMatrix[row][col];

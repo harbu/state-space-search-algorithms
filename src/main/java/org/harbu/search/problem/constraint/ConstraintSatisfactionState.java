@@ -36,7 +36,7 @@ public class ConstraintSatisfactionState implements State<ConstraintSatisfaction
         this.domains = deepCopyDomains(original.domains);
     }
     
-    protected void makeMove(int varIndex, Integer valueChosen) {
+    protected void makeMove(int varIndex, int valueChosen) {
         variables[varIndex] = valueChosen;
         constraint.apply(varIndex, valueChosen, domains);
     }

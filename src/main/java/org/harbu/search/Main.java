@@ -46,7 +46,7 @@ public class Main {
                 Arrays.asList("Turku", "Helsinki", "Vantaa", "Rovaniemi", "Tuusula",
                 "Lappeenranta", "Jyväskylä", "Imatra", "Tampere", "Kouvola", "Pietari",
                 "Tallinna", "Espoo", "Inkoo", "Nuokio", "Malmi", "Nääksiä", "Rulola", "Malaria"),
-                new int[][]{
+                new double[][]{
                     {},
                     {214},
                     {721, 500},

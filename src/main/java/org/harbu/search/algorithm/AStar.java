@@ -36,7 +36,7 @@ public class AStar<T extends State<T>> extends Algorithm<T> {
     @Override
     public boolean solve() {
         Map<T, T> shortestPathToNodes = new HashMap<>();
-        Map<T, Integer> openSet = new HashMap<>();
+        Map<T, Double> openSet = new HashMap<>();
         Set<T> closedSet = new HashSet<>();
         PriorityQueue<QueueEntry<T>> queue = new PriorityQueue<>();
 
@@ -48,6 +48,7 @@ public class AStar<T extends State<T>> extends Algorithm<T> {
             closedSet.add(current.getNode());
 
             if (goal.isGoalReached(current.getNode())) {
+                totalCost = current.getG();
                 reconstructPath(current.getNode(), shortestPathToNodes);
                 return true;
             }
@@ -55,7 +56,7 @@ public class AStar<T extends State<T>> extends Algorithm<T> {
             for (Operation<T> move : current.getNode().getOperations()) {
                 T neighbour = move.getNode();
                 if (!closedSet.contains(neighbour)) {
-                    int tentativeG = current.getG() + move.getCost();
+                    double tentativeG = current.getG() + move.getCost();
                     if (!openSet.containsKey(neighbour)) {
                         queue.add(new QueueEntry<>(neighbour, tentativeG, heuristic.calculate(neighbour)));
                         shortestPathToNodes.put(neighbour, current.getNode());

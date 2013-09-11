@@ -20,7 +20,7 @@ public class NPuzzleHeuristicTest {
 
     @Test
     public void testCalculate_one() {
-        assertEquals(0, heuristic.calculate(goal));
+        assertEquals(0, (int) heuristic.calculate(goal));
     }
 
     @Test
@@ -34,7 +34,7 @@ public class NPuzzleHeuristicTest {
         // distance of 1 to goal position, distance of 2 to goal position,
         // ...,  distance of 9 to goal position
         int expected = 4 + 2 + 0 + 1 + 1 + 2 + 3 + 3;
-        assertEquals(expected, heuristic.calculate(node));
+        assertEquals(expected, (int) heuristic.calculate(node));
     }
 
     @Test(expected = NPuzzleException.class)

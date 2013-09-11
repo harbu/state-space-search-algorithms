@@ -11,10 +11,10 @@ import org.harbu.search.problem.State;
 public class QueueEntry<T extends State<T>> implements Comparable<QueueEntry<T>> {
 
     private final T node;
-    private final int g;
-    private final int h;
+    private final double g;
+    private final double h;
 
-    public QueueEntry(T node, int g, int h) {
+    public QueueEntry(T node, double g, double h) {
         this.node = node;
         this.g = g;
         this.h = h;
@@ -24,15 +24,15 @@ public class QueueEntry<T extends State<T>> implements Comparable<QueueEntry<T>>
         return node;
     }
 
-    public int getG() {
+    public double getG() {
         return g;
     }
 
-    public int getH() {
+    public double getH() {
         return h;
     }
 
-    public int getF() {
+    public double getF() {
         return g + h;
     }
 

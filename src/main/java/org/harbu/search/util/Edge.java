@@ -6,9 +6,9 @@ public class Edge implements Comparable<Edge> {
 
     private final String from;
     private final String to;
-    private final int cost;
+    private final double cost;
 
-    public Edge(String from, String to, int cost) {
+    public Edge(String from, String to, double cost) {
         this.from = from;
         this.to = to;
         this.cost = cost;
@@ -22,7 +22,7 @@ public class Edge implements Comparable<Edge> {
         return to;
     }
 
-    public int getCost() {
+    public double getCost() {
         return cost;
     }
 
@@ -37,10 +37,10 @@ public class Edge implements Comparable<Edge> {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 89 * hash + Objects.hashCode(this.from);
-        hash = 89 * hash + Objects.hashCode(this.to);
-        hash = 89 * hash + this.cost;
+        int hash = 3;
+        hash = 37 * hash + Objects.hashCode(this.from);
+        hash = 37 * hash + Objects.hashCode(this.to);
+        hash = 37 * hash + (int) (Double.doubleToLongBits(this.cost) ^ (Double.doubleToLongBits(this.cost) >>> 32));
         return hash;
     }
 
@@ -57,6 +57,6 @@ public class Edge implements Comparable<Edge> {
 
     @Override
     public String toString() {
-        return String.format("%s --- (%d) --> %s", from, cost, to);
+        return String.format("%s --- (%.2f) --> %s", from, cost, to);
     }
 }

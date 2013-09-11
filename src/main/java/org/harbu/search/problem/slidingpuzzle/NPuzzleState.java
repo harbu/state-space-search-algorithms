@@ -145,30 +145,30 @@ public class NPuzzleState implements State<NPuzzleState> {
 
     private NPuzzleState slideDown() {
         int[][] copyOfLayout = TwoDArrayUtils.makeCopy(layout);
-        swapWithEmpty(copyOfLayout, emptySpace.getX(), emptySpace.getY() - 1);
+        swapWithEmpty(copyOfLayout, (int) emptySpace.getX(), (int) emptySpace.getY() - 1);
         return new NPuzzleState(copyOfLayout, n);
     }
 
     private NPuzzleState slideUp() {
         int[][] copyOfLayout = TwoDArrayUtils.makeCopy(layout);
-        swapWithEmpty(copyOfLayout, emptySpace.getX(), emptySpace.getY() + 1);
+        swapWithEmpty(copyOfLayout, (int) emptySpace.getX(), (int) emptySpace.getY() + 1);
         return new NPuzzleState(copyOfLayout, n);
     }
 
     private NPuzzleState slideRight() {
         int[][] copyOfLayout = TwoDArrayUtils.makeCopy(layout);
-        swapWithEmpty(copyOfLayout, emptySpace.getX() - 1, emptySpace.getY());
+        swapWithEmpty(copyOfLayout, (int) emptySpace.getX() - 1, (int) emptySpace.getY());
         return new NPuzzleState(copyOfLayout, n);
     }
 
     private NPuzzleState slideLeft() {
         int[][] copyOfLayout = TwoDArrayUtils.makeCopy(layout);
-        swapWithEmpty(copyOfLayout, emptySpace.getX() + 1, emptySpace.getY());
+        swapWithEmpty(copyOfLayout, (int) emptySpace.getX() + 1, (int) emptySpace.getY());
         return new NPuzzleState(copyOfLayout, n);
     }
 
     private void swapWithEmpty(int[][] newLayout, int destX, int destY) {
-        newLayout[emptySpace.getY()][emptySpace.getX()] = newLayout[destY][destX];
+        newLayout[(int) emptySpace.getY()][(int) emptySpace.getX()] = newLayout[destY][destX];
         newLayout[destY][destX] = EMPTY_SPACE;
     }
 }

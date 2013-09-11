@@ -19,7 +19,7 @@ public class CompleteGraphTest {
     @Before
     public void setUp() {
         List<String> vertexLabels = Arrays.asList("Joulu", "Ammatti", "Ovi", "Kalakukko");
-        int[][] lowerHalfCostMatrix = new int[][]{
+        double[][] lowerHalfCostMatrix = new double[][]{
             {},
             {5},
             {3, 7},
@@ -30,9 +30,9 @@ public class CompleteGraphTest {
 
     @Test
     public void testCost() {
-        assertEquals(13, graph.cost("Kalakukko", "Ovi"));
-        assertEquals(13, graph.cost("Ovi", "Kalakukko"));
-        assertEquals(0, graph.cost("Ovi", "Ovi"));
+        assertEquals(13, (int) graph.cost("Kalakukko", "Ovi"));
+        assertEquals(13, (int) graph.cost("Ovi", "Kalakukko"));
+        assertEquals(0, (int) graph.cost("Ovi", "Ovi"));
     }
 
     @Test
@@ -71,10 +71,10 @@ public class CompleteGraphTest {
     @Test
     public void testToString() {
         String expected = ""
-                + "Joulu     [0, 5, 3, 1]\n"
-                + "Ammatti   [5, 0, 7, 4]\n"
-                + "Ovi       [3, 7, 0, 13]\n"
-                + "Kalakukko [1, 4, 13, 0]\n";
+                + "Joulu     [0.0, 5.0, 3.0, 1.0]\n"
+                + "Ammatti   [5.0, 0.0, 7.0, 4.0]\n"
+                + "Ovi       [3.0, 7.0, 0.0, 13.0]\n"
+                + "Kalakukko [1.0, 4.0, 13.0, 0.0]\n";
         assertEquals(expected, graph.toString());
     }
 
@@ -82,9 +82,9 @@ public class CompleteGraphTest {
     public void testSubgraph() {
         CompleteGraph subGraph = graph.subGraph(Arrays.asList("Joulu", "Kalakukko", "Ovi"));
         String expected = ""
-                + "Joulu     [0, 1, 3]\n"
-                + "Kalakukko [1, 0, 13]\n"
-                + "Ovi       [3, 13, 0]\n";
+                + "Joulu     [0.0, 1.0, 3.0]\n"
+                + "Kalakukko [1.0, 0.0, 13.0]\n"
+                + "Ovi       [3.0, 13.0, 0.0]\n";
         assertEquals(expected, subGraph.toString());
     }
 }

@@ -16,7 +16,7 @@ public class NQueensConstraint implements Constraint {
     }
 
     @Override
-    public void apply(int varIndex, Integer valueChosen, List<Set<Integer>> domains) {
+    public void apply(int varIndex, int valueChosen, List<Set<Integer>> domains) {
         handleHorizontal(domains, varIndex);
         handleVertical(domains, valueChosen);
         handleDiagonals(varIndex, valueChosen, domains);
@@ -26,20 +26,20 @@ public class NQueensConstraint implements Constraint {
         domains.get(varIndex).clear();
     }
 
-    private void handleVertical(List<Set<Integer>> domains, Integer valueChosen) {
+    private void handleVertical(List<Set<Integer>> domains, int valueChosen) {
         for (Set<Integer> domain : domains) {
             domain.remove(valueChosen);
         }
     }
 
-    private void handleDiagonals(int varIndex, Integer valueChosen, List<Set<Integer>> domains) {
+    private void handleDiagonals(int varIndex, int valueChosen, List<Set<Integer>> domains) {
         handleUpperLeftDiagonal(varIndex, valueChosen, domains);
         handleLowerRightDiagonal(varIndex, valueChosen, domains);
         handleUpperRightDiagonal(varIndex, valueChosen, domains);
         handleLowerLeftDiagonal(varIndex, valueChosen, domains);
     }
 
-    private void handleUpperLeftDiagonal(int varIndex, Integer valueChosen, List<Set<Integer>> domains) {
+    private void handleUpperLeftDiagonal(int varIndex, int valueChosen, List<Set<Integer>> domains) {
         int row = varIndex - 1;
         int col = valueChosen - 1;
         while (col >= 0 && row >= 0) {
@@ -49,7 +49,7 @@ public class NQueensConstraint implements Constraint {
         }
     }
 
-    private void handleLowerRightDiagonal(int varIndex, Integer valueChosen, List<Set<Integer>> domains) {
+    private void handleLowerRightDiagonal(int varIndex, int valueChosen, List<Set<Integer>> domains) {
         int row = varIndex + 1;
         int col = valueChosen + 1;
         while (col < n && row < n) {
@@ -59,7 +59,7 @@ public class NQueensConstraint implements Constraint {
         }
     }
 
-    private void handleUpperRightDiagonal(int varIndex, Integer valueChosen, List<Set<Integer>> domains) {
+    private void handleUpperRightDiagonal(int varIndex, int valueChosen, List<Set<Integer>> domains) {
         int row = varIndex - 1;
         int col = valueChosen + 1;
         while (col < n && row >= 0) {
@@ -69,7 +69,7 @@ public class NQueensConstraint implements Constraint {
         }
     }
 
-    private void handleLowerLeftDiagonal(int varIndex, Integer valueChosen, List<Set<Integer>> domains) {
+    private void handleLowerLeftDiagonal(int varIndex, int valueChosen, List<Set<Integer>> domains) {
         int row = varIndex + 1;
         int col = valueChosen - 1;
         while (col >= 0 && row < n) {

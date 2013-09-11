@@ -18,8 +18,8 @@ import java.util.LinkedList;
  */
 public class IDAStar<T extends State<T>> extends Algorithm<T> {
 
-    private static final int INFINITY = Integer.MAX_VALUE;
-    private static final int FOUND = -1;
+    private static final double INFINITY = Double.POSITIVE_INFINITY;
+    private static final double FOUND = -1;
 
     public IDAStar(Problem<T> problem) {
         super(problem);
@@ -27,9 +27,9 @@ public class IDAStar<T extends State<T>> extends Algorithm<T> {
 
     @Override
     public boolean solve() {
-        int threshold = heuristic.calculate(start);
+        double threshold = heuristic.calculate(start);
         while (true) {
-            int result = search(start, 0, threshold);
+            double result = search(start, 0, threshold);
 
             if (result == FOUND) {
                 return true;
@@ -41,20 +41,21 @@ public class IDAStar<T extends State<T>> extends Algorithm<T> {
         }
     }
 
-    private int search(T node, int costToNode, int threshold) {
-        int f = costToNode + heuristic.calculate(node);
+    private double search(T node, double costToNode, double threshold) {
+        double f = costToNode + heuristic.calculate(node);
 
         if (f > threshold) {
             return f;
         } else if (goal.isGoalReached(node)) {
             pathToGoal = new LinkedList<>();
             pathToGoal.addFirst(node);
+            totalCost = costToNode;
             return FOUND;
         }
 
-        int min = INFINITY;
+        double min = INFINITY;
         for (Operation<T> move : node.getOperations()) {
-            int t = search(move.getNode(), costToNode + move.getCost(), threshold);
+            double t = search(move.getNode(), costToNode + move.getCost(), threshold);
             if (t == FOUND) {
                 pathToGoal.addFirst(node);
                 return FOUND;

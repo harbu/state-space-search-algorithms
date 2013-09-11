@@ -2,27 +2,27 @@ package org.harbu.search.util;
 
 public class Coordinate {
 
-    private int x;
-    private int y;
+    private double x;
+    private double y;
 
-    public Coordinate(int x, int y) {
+    public Coordinate(double x, double y) {
         this.x = x;
         this.y = y;
     }
 
-    public int getX() {
+    public double getX() {
         return x;
     }
 
-    public void setX(int x) {
+    public void setX(double x) {
         this.x = x;
     }
 
-    public int getY() {
+    public double getY() {
         return y;
     }
 
-    public void setY(int y) {
+    public void setY(double y) {
         this.y = y;
     }
 
@@ -39,8 +39,8 @@ public class Coordinate {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 53 * hash + x;
-        hash = 53 * hash + y;
+        hash = 59 * hash + (int) (Double.doubleToLongBits(this.x) ^ (Double.doubleToLongBits(this.x) >>> 32));
+        hash = 59 * hash + (int) (Double.doubleToLongBits(this.y) ^ (Double.doubleToLongBits(this.y) >>> 32));
         return hash;
     }
 
@@ -49,15 +49,15 @@ public class Coordinate {
         return String.format("(%d, %d)", x, y);
     }
 
-    public static int manhattanDistance(Coordinate c1, Coordinate c2) {
-        int dx = c1.getX() - c2.getX();
-        int dy = c1.getY() - c2.getY();
+    public static double manhattanDistance(Coordinate c1, Coordinate c2) {
+        double dx = c1.getX() - c2.getX();
+        double dy = c1.getY() - c2.getY();
         return Math.abs(dx) + Math.abs(dy);
     }
     
     public static double euclideanDistance(Coordinate c1, Coordinate c2) {
-        int dx = c1.getX() - c2.getX();
-        int dy = c1.getY() - c2.getY();
+        double dx = c1.getX() - c2.getX();
+        double dy = c1.getY() - c2.getY();
         return Math.sqrt(dx*dx + dy*dy);
     }
 }

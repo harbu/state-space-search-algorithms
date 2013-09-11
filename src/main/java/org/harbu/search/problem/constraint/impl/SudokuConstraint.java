@@ -14,10 +14,10 @@ import java.util.Set;
 class SudokuConstraint implements Constraint {
 
     @Override
-    public void apply(int varIndex, Integer valueChosen, List<Set<Integer>> domains) {
+    public void apply(int varIndex, int valueChosen, List<Set<Integer>> domains) {
         Coordinate coordinate = indexConverter.oneDTo2D(varIndex);
-        int varRow = coordinate.getY();
-        int varCol = coordinate.getX();
+        int varRow = (int) coordinate.getY();
+        int varCol = (int) coordinate.getX();
 
         // Handle horizontal and vertical.
         for (int i = 0; i < NUM_OF_ROWS; ++i) {

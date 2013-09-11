@@ -20,6 +20,9 @@ public class TSPState implements State<TSPState> {
 
     
     public static TSPState makeTSPStart(CompleteGraph graph, String startLabel) {
+        if (!graph.getVertices().contains(startLabel)) {
+            throw new RuntimeException(String.format("Start label \"%s\" not in graph.", startLabel));
+        }
         Set<String> citiesToVisit = graph.getVertices();
         citiesToVisit.remove(startLabel);
         return new TSPState(graph, startLabel, citiesToVisit);

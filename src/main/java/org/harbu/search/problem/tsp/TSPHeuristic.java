@@ -18,7 +18,7 @@ import java.util.Set;
 public class TSPHeuristic implements Heuristic<TSPState> {
 
     @Override
-    public int calculate(TSPState node) {
+    public double calculate(TSPState node) {
         int total = 0;
         List<String> nodesHandled = new ArrayList<>();
         Set<String> nodesLeft = new HashSet<>(node.getCitiesNotYetVisited());
@@ -41,8 +41,8 @@ public class TSPHeuristic implements Heuristic<TSPState> {
         return total;
     }
 
-    private int findMinimumEdge(List<String> nodesHandled, Map<String, Set<Edge>> edgesByVertex, Set<String> nodesLeft) {
-        int minCost = Integer.MAX_VALUE;
+    private double findMinimumEdge(List<String> nodesHandled, Map<String, Set<Edge>> edgesByVertex, Set<String> nodesLeft) {
+        double minCost = Double.POSITIVE_INFINITY;
         Edge minEdge = null;
         for (String from : nodesHandled) {
             for (Edge edge : edgesByVertex.get(from)) {

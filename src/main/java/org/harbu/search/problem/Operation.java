@@ -5,9 +5,9 @@ import java.util.Objects;
 public class Operation<T extends State<T>> {
 
     private final T node;
-    private final int cost;
+    private final double cost;
 
-    public Operation(T node, int cost) {
+    public Operation(T node, double cost) {
         this.node = node;
         this.cost = cost;
     }
@@ -16,7 +16,7 @@ public class Operation<T extends State<T>> {
         return node;
     }
 
-    public int getCost() {
+    public double getCost() {
         return cost;
     }
 
@@ -33,11 +33,9 @@ public class Operation<T extends State<T>> {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 47 * hash + Objects.hashCode(this.node);
-        hash = 47 * hash + this.cost;
+        int hash = 3;
+        hash = 41 * hash + Objects.hashCode(this.node);
+        hash = 41 * hash + (int) (Double.doubleToLongBits(this.cost) ^ (Double.doubleToLongBits(this.cost) >>> 32));
         return hash;
     }
-    
-    
 }

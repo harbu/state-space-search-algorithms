@@ -1,8 +1,6 @@
 package org.harbu.search.problem.constraint;
 
 import org.harbu.search.problem.Goal;
-import org.harbu.search.problem.Heuristic;
-import org.harbu.search.problem.NoHeuristic;
 
 public class ConstraintSatisfactionGoal implements Goal<ConstraintSatisfactionState> {
 

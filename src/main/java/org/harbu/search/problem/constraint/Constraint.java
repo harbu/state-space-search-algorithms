@@ -17,5 +17,5 @@ public interface Constraint {
      * @param domains       one domain per variable (in order of variables),
      *                       use <code>remove</code> on sets to reduce domains.
      */
-    public void apply(int varIndex, Integer valueChosen, List<Set<Integer>> domains);
+    public void apply(int varIndex, int valueChosen, List<Set<Integer>> domains);
 }
