@@ -54,4 +54,10 @@ public class Coordinate {
         int dy = c1.getY() - c2.getY();
         return Math.abs(dx) + Math.abs(dy);
     }
+    
+    public static double euclideanDistance(Coordinate c1, Coordinate c2) {
+        int dx = c1.getX() - c2.getX();
+        int dy = c1.getY() - c2.getY();
+        return Math.sqrt(dx*dx + dy*dy);
+    }
 }

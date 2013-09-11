@@ -4,16 +4,16 @@ import org.harbu.search.problem.constraint.ConstraintSatisfactionState;
 import java.util.HashSet;
 import java.util.Set;
 
-public class NQueensProblem extends ConstraintSatisfactionState {
+public class NQueensState extends ConstraintSatisfactionState {
     
     private int n;
 
-    public NQueensProblem(int n) {
+    public NQueensState(int n) {
         super(n, integersFromZeroTo(n), new NQueensConstraint(n));
         this.n = n;
     }
 
-    private NQueensProblem(NQueensProblem original) {
+    private NQueensState(NQueensState original) {
         super(original);
         this.n = original.n;
     }
@@ -39,7 +39,7 @@ public class NQueensProblem extends ConstraintSatisfactionState {
 
     @Override
     protected ConstraintSatisfactionState copy() {
-        return new NQueensProblem(this);
+        return new NQueensState(this);
     }
 
     private static Set<Integer> integersFromZeroTo(int n) {

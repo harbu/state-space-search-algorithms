@@ -5,7 +5,7 @@ import org.harbu.search.algorithm.Algorithm;
 import org.harbu.search.algorithm.BruteForceSearch;
 import org.harbu.search.problem.slidingpuzzle.NPuzzleState;
 import org.harbu.search.problem.constraint.ConstraintSatisfaction;
-import org.harbu.search.problem.constraint.impl.NQueensProblem;
+import org.harbu.search.problem.constraint.impl.NQueensState;
 import org.harbu.search.problem.constraint.impl.SudokuState;
 import org.harbu.search.problem.slidingpuzzle.NPuzzle;
 import org.harbu.search.problem.tsp.TSP;
@@ -81,7 +81,7 @@ public class Main {
     }
     
     public static void queens() {
-        NQueensProblem problem = new NQueensProblem(100);
+        NQueensState problem = new NQueensState(100);
         Algorithm algorithm = new BruteForceSearch(
                 new ConstraintSatisfaction(problem),
                 BruteForceSearch.SearchType.DEPTH_FIRST);
