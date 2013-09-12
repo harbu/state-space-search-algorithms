@@ -1,5 +1,13 @@
 package org.harbu.search.problem;
 
+/**
+ * Represents a graph-search or tree-search problem instance. Glues together the
+ * necessary objects to solve a search problem, i.e. the start state, the goal
+ * and a heuristic function.
+ *
+ * @author Eric Andrews
+ * @param <T> the state space type
+ */
 public abstract class Problem<T extends State<T>> {
 
     private T startState;

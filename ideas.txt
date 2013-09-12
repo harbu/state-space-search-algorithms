@@ -1,2 +1,5 @@
 - Towers of Hanoi (vary number of disks)
 - Return structured result from Algorithm.solve().
+- Integration test rehaul, configure algorithm <-> instance in map or something
+  like that..
+- Fix A*

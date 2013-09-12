@@ -2,6 +2,14 @@ package org.harbu.search.problem;
 
 import java.util.Objects;
 
+/**
+ * Represents an operation, a valid transformation between two connected nodes
+ * in a state-space graph in which we move from one to the other. This
+ * operation, or edge in graph terminology, comes with an associated cost.
+ *
+ * @author Eric Andrews
+ * @param <T> the state space type
+ */
 public class Operation<T extends State<T>> {
 
     private final T node;
