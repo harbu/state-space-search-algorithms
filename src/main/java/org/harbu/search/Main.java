@@ -32,7 +32,7 @@ public class Main {
             {13, 14, 15, 0}
         });
 
-        NPuzzleState start = ProblemRandomizer.randomizeProblem(goal);
+        NPuzzleState start = ProblemRandomizer.randomizeProblem(goal, 500);
         Algorithm<NPuzzleState> a = new AStar<>(new NPuzzle(start, goal));
         a.solve();
         System.out.println(start);

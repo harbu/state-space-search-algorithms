@@ -27,6 +27,12 @@ public class TwoDArrayUtilsTest {
     public void testFindValue_found() {
         assertEquals(new Coordinate(4, 0), TwoDArrayUtils.findValue(array, 5));
     }
+    
+    @Test
+    public void testGetValueAt() {
+        Coordinate coordinate = new Coordinate(1, 1);
+        assertEquals(623, TwoDArrayUtils.getValueAt(coordinate, array));
+    }
 
     @Test
     public void testMakeCopy() {
