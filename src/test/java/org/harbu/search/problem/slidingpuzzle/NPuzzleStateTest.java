@@ -1,6 +1,5 @@
 package org.harbu.search.problem.slidingpuzzle;
 
-import org.harbu.search.problem.slidingpuzzle.NPuzzleState;
 import org.harbu.search.problem.Operation;
 import org.junit.*;
 import static org.junit.Assert.*;

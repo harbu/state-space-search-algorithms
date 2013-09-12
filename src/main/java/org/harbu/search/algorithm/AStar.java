@@ -11,20 +11,20 @@ import java.util.PriorityQueue;
 import java.util.Set;
 
 /**
- * A*-star best-first search algorithm implementation.
+ * A*-star (best-first search) algorithm implementation.
  * 
  * @author Eric Andrews
  * @param  <T> the state space type
  * 
- * When heuristic returns zero, this algorithm is essentially becomes
+ * When heuristic always returns zero, this algorithm is essentially becomes
  * uniform-cost search.
  *
  * Good:
  * + Uses heuristic to guide search.
- * + Guaranteed to find best path.
+ * + Guaranteed to find best path when using an admissible heuristic.
  * 
  * Bad:
- * - High memory use.
+ * - Extremely high memory.
  *
  */
 public class AStar<T extends State<T>> extends Algorithm<T> {
@@ -38,12 +38,12 @@ public class AStar<T extends State<T>> extends Algorithm<T> {
         Map<T, T> shortestPathToNodes = new HashMap<>();
         Map<T, Double> openSet = new HashMap<>();
         Set<T> closedSet = new HashSet<>();
-        PriorityQueue<QueueEntry<T>> queue = new PriorityQueue<>();
+        PriorityQueue<AStarNode<T>> queue = new PriorityQueue<>();
 
-        queue.add(new QueueEntry<>(start, 0, heuristic.calculate(start)));
+        queue.add(new AStarNode<>(start, 0, heuristic.calculate(start)));
 
         while (!queue.isEmpty()) {
-            QueueEntry<T> current = queue.poll();
+            AStarNode<T> current = queue.poll();
             openSet.remove(current.getNode());
             closedSet.add(current.getNode());
 
@@ -58,11 +58,11 @@ public class AStar<T extends State<T>> extends Algorithm<T> {
                 if (!closedSet.contains(neighbour)) {
                     double tentativeG = current.getG() + move.getCost();
                     if (!openSet.containsKey(neighbour)) {
-                        queue.add(new QueueEntry<>(neighbour, tentativeG, heuristic.calculate(neighbour)));
+                        queue.add(new AStarNode<>(neighbour, tentativeG, heuristic.calculate(neighbour)));
                         shortestPathToNodes.put(neighbour, current.getNode());
                         openSet.put(neighbour, tentativeG);
                     } else if (tentativeG < openSet.get(neighbour)) {
-                        queue.add(new QueueEntry<>(neighbour, tentativeG, heuristic.calculate(neighbour)));
+                        queue.add(new AStarNode<>(neighbour, tentativeG, heuristic.calculate(neighbour)));
                         shortestPathToNodes.put(neighbour, current.getNode());
                     }
                 }

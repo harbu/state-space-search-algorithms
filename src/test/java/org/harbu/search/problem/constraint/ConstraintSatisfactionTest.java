@@ -6,15 +6,11 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author harbu
- */
 public class ConstraintSatisfactionTest {
-    
+
     private ConstraintSatisfactionState state;
     private ConstraintSatisfaction problem;
-    
+
     @Before
     public void setUp() {
         state = new NQueensState(4);

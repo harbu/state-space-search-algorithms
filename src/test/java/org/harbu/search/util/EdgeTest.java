@@ -1,9 +1,7 @@
 package org.harbu.search.util;
 
-import org.harbu.search.util.Edge;
 import org.junit.Test;
 import static org.junit.Assert.*;
-
 
 public class EdgeTest {
 
@@ -13,7 +11,7 @@ public class EdgeTest {
         Edge e2 = new Edge("A", "B", 300);
         assertTrue(e1.equals(e2));
     }
-    
+
     @Test
     public void testEquals_false() {
         Edge e1 = new Edge("A", "B", 300);

@@ -12,10 +12,6 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.harbu.search.test.TestHelper.*;
 
-/**
- *
- * @author harbu
- */
 public class TSPStateTest {
 
     private static final String coordinateInput = "ant 12.5 8.0\n"

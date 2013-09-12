@@ -1,7 +1,5 @@
 package org.harbu.search.util;
 
-import org.harbu.search.util.CompleteGraph;
-import org.harbu.search.util.Edge;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;

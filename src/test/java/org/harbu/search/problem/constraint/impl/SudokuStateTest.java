@@ -10,10 +10,6 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.harbu.search.test.TestHelper.*;
 
-/**
- *
- * @author harbu
- */
 public class SudokuStateTest {
 
     private ConstraintSatisfactionState state;
@@ -69,7 +65,7 @@ public class SudokuStateTest {
         for (Operation operation : state.getOperations()) {
             actualStates.add(operation.getNode().toString());
         }
-        
+
         assertEquals(expectedStates, actualStates);
     }
 }

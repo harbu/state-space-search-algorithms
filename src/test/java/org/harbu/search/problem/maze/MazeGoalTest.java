@@ -6,10 +6,6 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.harbu.search.test.TestHelper.*;
 
-/**
- *
- * @author harbu
- */
 public class MazeGoalTest {
 
     private MazeState state;

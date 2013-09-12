@@ -12,14 +12,10 @@ import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.harbu.search.test.TestHelper.*;
 
-/**
- *
- * @author harbu
- */
 public class MazeStateTest {
 
     private final String INPUT =
-              "#  ##\n"
+            "#  ##\n"
             + "# S##\n"
             + "# #G#\n"
             + "# # #\n"
@@ -41,7 +37,7 @@ public class MazeStateTest {
     public void testGetPosition() {
         Coordinate coord1 = new Coordinate(2, 1).up();
         Coordinate coord2 = new Coordinate(2, 1).left();
-        
+
         Coordinate actual = doSteps(state, 1).getPosition();
         assertThat(actual, anyOf(equalTo(coord1), equalTo(coord2)));
     }

@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Implementations of basic BFS and DPS algorithms.
+ * Implementations of basic breadth-first and depth-first search algorithms.
  * 
  * @author Eric Andrews
  * @param  <T> the state space type
@@ -19,11 +19,12 @@ import java.util.Set;
  * Good:
  * + Both are conceptually simple.
  * + BFS: Guaranteed to find best path, if unit-cost edges.
+ * + DFS: low memory use, asymptotically equal to depth of search.
  * 
  * Bad:
- * - Don't use heuristic to guide search.
- * - DFS: may end  up in an infinite-path.
- * - DFS: may not find shortest path.
+ * - Neither use heuristic to guide search.
+ * - DFS: can end up in an infinite path when searching graphs.
+ * - DFS: not guaranteed find shortest path.
  * - BFS: high memory use.
  *
  */

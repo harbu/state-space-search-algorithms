@@ -1,7 +1,5 @@
 package org.harbu.search.problem.slidingpuzzle;
 
-import org.harbu.search.problem.slidingpuzzle.NPuzzleException;
-import org.harbu.search.problem.slidingpuzzle.NPuzzleInputVerifier;
 import org.junit.*;
 
 public class NPuzzleInputVerifierTest {

@@ -8,13 +8,18 @@ import java.util.LinkedList;
 /**
  * Iterative deepening A* search.
  * 
+ * Good:
+ *  + Uses heuristic to guide search.
+ *  + Guaranteed to find best path.
+ *  + Combines best parts of DFS and BFS to achieved optimal asymptotic time- and
+ *    space-complexities.
+ * Bad:
+ *  - Nodes at depths below solution depth expanded several times. Effects become
+ *    worse as branching factor gets smaller.
+ * 
  * @author Eric Andrews
  * @param  <T> the state space type
  * 
- * Good: + Uses heuristic to guide search. + Guaranteed to find best path. +
- * Combines best parts of DFS and BFS to achieved optimal asymptotic time- and
- * space-complexities. Bad: - Some nodes expanded several times, gets worse as
- * branching factor gets smaller.
  */
 public class IDAStar<T extends State<T>> extends Algorithm<T> {
 

@@ -1,6 +1,5 @@
 package org.harbu.search.util;
 
-import org.harbu.search.util.Coordinate;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -48,7 +47,7 @@ public class CoordinateTest {
     public void testRight() {
         assertEquals(new Coordinate(1, 0), ORIGIN.right());
     }
-    
+
     @Test
     public void testToString() {
         assertEquals("(3.16, 0.00)", new Coordinate(3.15624, 0).toString());

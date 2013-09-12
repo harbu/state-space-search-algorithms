@@ -6,15 +6,11 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author harbu
- */
 public class TSPTest {
-    
+
     private TSPState state;
     private TSP problem;
-    
+
     @Before
     public void setUp() {
         CompleteGraph graph = new CompleteGraph(Arrays.asList("A"), new double[0][0]);

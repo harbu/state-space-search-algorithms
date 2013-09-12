@@ -5,18 +5,13 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author harbu
- */
 public class MazeInputTest {
-    
+
     private static final String VALID_INPUT =
-              "############\n"
+            "############\n"
             + "# S ##    ##\n"
             + " #       #\n"
             + " # # #                G\n";
-    
     private MazeInput mazeInput;
 
     @Before
@@ -54,14 +49,15 @@ public class MazeInputTest {
     @Test
     public void testGetLayout() {
         int[][] expected = new int[][]{
-            { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-            { 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1 },
-            { 0, 1, 0, 0, 0, 0, 0, 0, 0, 1 },
-            { 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+            {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+            {1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1},
+            {0, 1, 0, 0, 0, 0, 0, 0, 0, 1},
+            {0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
         };
-        
+
         assertArrayEquals(expected, mazeInput.getLayout());
     }
+
     @Test
     public void testGetStartPosition() {
         assertEquals(new Coordinate(2, 1), mazeInput.getStartPosition());

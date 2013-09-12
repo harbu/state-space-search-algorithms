@@ -7,18 +7,14 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author harbu
- */
-public class QueueEntryTest {
+public class AStarNodeTest {
 
     private static final double DELTA = 0.0001;
-    private QueueEntry<ExampleState> queueEntry;
+    private AStarNode<ExampleState> queueEntry;
 
     @Before
     public void setUp() {
-        queueEntry = new QueueEntry<>(new ExampleState(), 3.141592, 9);
+        queueEntry = new AStarNode<>(new ExampleState(), 3.141592, 9);
     }
 
     @Test
@@ -28,8 +24,8 @@ public class QueueEntryTest {
 
     @Test
     public void testCompareTo() {
-        assertEquals(-1, queueEntry.compareTo(new QueueEntry<>(new ExampleState(), 6.141592, 8)));
-        assertEquals(1, queueEntry.compareTo(new QueueEntry<>(new ExampleState(), 0, 0)));
+        assertEquals(-1, queueEntry.compareTo(new AStarNode<>(new ExampleState(), 6.141592, 8)));
+        assertEquals(1, queueEntry.compareTo(new AStarNode<>(new ExampleState(), 0, 0)));
     }
 
     private class ExampleState implements State<ExampleState> {

@@ -1,19 +1,13 @@
 package org.harbu.search.util;
 
-import org.harbu.search.util.TwoDIndexConverter;
-import org.harbu.search.util.Coordinate;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author harbu
- */
 public class TwoDIndexConverterTest {
-    
+
     private TwoDIndexConverter indexConverter;
-    
+
     @Before
     public void setUp() {
         indexConverter = new TwoDIndexConverter(16);

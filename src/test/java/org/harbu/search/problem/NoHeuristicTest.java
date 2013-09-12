@@ -3,10 +3,6 @@ package org.harbu.search.problem;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author harbu
- */
 public class NoHeuristicTest {
 
     @Test
