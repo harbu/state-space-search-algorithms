@@ -19,7 +19,7 @@ public class TSPHeuristic implements Heuristic<TSPState> {
 
     @Override
     public double calculate(TSPState node) {
-        int total = 0;
+        double total = 0;
         List<String> nodesHandled = new ArrayList<>();
         Set<String> nodesLeft = new HashSet<>(node.getCitiesNotYetVisited());
         nodesLeft.add(node.getCurrentCity());

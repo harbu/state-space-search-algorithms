@@ -20,7 +20,7 @@ public class MazeInput {
     public MazeInput(String input) {
         parseInput(input);
         if (startPosition == null || goalPosition == null) {
-            throw new RuntimeException("Start or goal tile missing.");
+            throw MazeException.makeStartOrGoalMissingError();
         }
     }
 
@@ -63,8 +63,7 @@ public class MazeInput {
             } else if (ch == FLOOR_TILE) {
                 return MazeState.FLOOR;
             } else {
-                String msg = String.format("Character %c at (%d, %d) has no meaning.", ch, x, y);
-                throw new RuntimeException(msg);
+                throw MazeException.makeStartOrGoalMissingError(ch, x, y);
             }
         }
     }
@@ -74,8 +73,7 @@ public class MazeInput {
             startPosition = new Coordinate(x, y);
             return MazeState.FLOOR;
         } else {
-            String msg = "More than one start position defined.";
-            throw new RuntimeException(msg);
+            throw MazeException.makeMultipleStartsError();
         }
     }
 
@@ -84,8 +82,7 @@ public class MazeInput {
             goalPosition = new Coordinate(x, y);
             return MazeState.FLOOR;
         } else {
-            String msg = "More than one goal position defined.";
-            throw new RuntimeException(msg);
+             throw MazeException.makeMultipleGoalsError();
         }
     }
 }

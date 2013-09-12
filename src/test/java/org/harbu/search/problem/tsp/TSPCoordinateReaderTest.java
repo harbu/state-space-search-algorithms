@@ -45,4 +45,11 @@ public class TSPCoordinateReaderTest {
         assertEquals(new HashSet<>(expectedVertexLabels), graph.getVertices());
         assertEquals(expectedEdges, graph.getEdges());
     }
+    
+    @Test(expected = TSPException.class)
+    public void testInvalidFormat() {
+        String input ="A 31.5 62.2\n"
+                + "HELLOWORLD!!";
+        TSPCoordinateReader.readCoordinateString(input);
+    }
 }

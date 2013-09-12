@@ -22,7 +22,7 @@ public class TSPCoordinateReader {
         for (String line : input.split("\\n")) {
             String[] words = line.split("\\s+");
             if (words.length != 3) {
-                throw new RuntimeException("Should have 3 entries per line");
+                throw TSPException.makeLineError();
             }
             
             String label = words[NAME_INDEX];

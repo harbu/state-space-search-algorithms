@@ -10,6 +10,7 @@ import org.harbu.search.util.Coordinate;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import static org.harbu.search.test.TestHelper.*;
 
 /**
  *
@@ -53,23 +54,23 @@ public class TSPStateTest {
     @Test
     public void testIsReturnedHome_isFalseOnStart() {
         assertFalse(state.isReturnedHome());
-        assertFalse(moveSteps(state, 1).isReturnedHome());
-        assertFalse(moveSteps(state, 2).isReturnedHome());
+        assertFalse(doSteps(state, 1).isReturnedHome());
+        assertFalse(doSteps(state, 2).isReturnedHome());
     }
 
     @Test
     public void testIsReturnedHome_isFalseAfterFirstStep() {
-        assertFalse(moveSteps(state, 1).isReturnedHome());;
+        assertFalse(doSteps(state, 1).isReturnedHome());;
     }
 
     @Test
     public void testIsReturnedHome_isFalseAfterSecondStep() {
-        assertFalse(moveSteps(state, 2).isReturnedHome());
+        assertFalse(doSteps(state, 2).isReturnedHome());
     }
 
     @Test
     public void testIsReturnedHome_isTrueOnFinalStep() {
-        assertTrue(moveSteps(state, 3).isReturnedHome());
+        assertTrue(doSteps(state, 3).isReturnedHome());
     }
 
     @Test
@@ -79,12 +80,12 @@ public class TSPStateTest {
         List<Double> expectedCosts = Arrays.asList(
                 Coordinate.euclideanDistance(new Coordinate(12.5, 8), new Coordinate(-52.7, 63.21)),
                 Coordinate.euclideanDistance(new Coordinate(12.5, 8), new Coordinate(0, 0)));
-        
+
         List<Operation<TSPState>> operations = state.getOperations();
-        
+
         assertEquals(expectedLabels.size(), operations.size());
-        
-        for (int i=0; i < operations.size(); ++i) {
+
+        for (int i = 0; i < operations.size(); ++i) {
             assertEquals(expectedLabels.get(i), operations.get(i).getNode().toString());
             assertEquals(expectedCosts.get(i), operations.get(i).getCost(), 0.00001);
         }
@@ -92,18 +93,16 @@ public class TSPStateTest {
 
     @Test
     public void testEquals_false() {
-        assertFalse(state.equals(moveSteps(state, 1)));
-    }
-    
-    @Test
-    public void testEquals_true() {
-        assertTrue(moveSteps(state, 2).equals(moveSteps(state, 2)));
+        assertFalse(state.equals(doSteps(state, 1)));
     }
 
-    private TSPState moveSteps(TSPState node, int n) {
-        for (int i = 0; i < n; ++i) {
-            node = node.getOperations().get(0).getNode();
-        }
-        return node;
+    @Test
+    public void testEquals_true() {
+        assertTrue(doSteps(state, 2).equals(doSteps(state, 2)));
+    }
+
+    @Test(expected = TSPException.class)
+    public void testInvalidStartLabel() {
+        TSPState.makeTSPStart(graph, "JASKLGJASKLG");
     }
 }
