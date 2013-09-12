@@ -8,7 +8,7 @@ public class MazeHeuristicTest {
 
     @Test
     public void testCalculate() {
-        MazeHeuristic heuristic = new MazeHeuristic(new Coordinate(0, 0));
+        MazeHeuristic heuristic = new MazeHeuristic(Coordinate.ORIGIN);
         MazeState state = new MazeState(new int[][]{
             {0, 0, 0, 1},
             {1, 0, 0, 1},

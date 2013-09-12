@@ -1,13 +1,19 @@
 package org.harbu.search.util;
 
 /**
- *
- * @author harbu
+ * Convert between a two-dimensional and one-dimensional array index.
+ * 
+ * @author Eric Andrews
  */
 public class TwoDIndexConverter {
 
     private final int numOfRows;
 
+    /**
+     * Instantiate a converter.
+     * @param numOfRows the number of rows in the target 2-d representation of
+     *                  an array.
+     */
     public TwoDIndexConverter(int numOfRows) {
         this.numOfRows = numOfRows;
     }

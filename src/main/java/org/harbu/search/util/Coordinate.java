@@ -1,7 +1,13 @@
 package org.harbu.search.util;
 
+/**
+ * An immutable point on a two-dimensional Cartesian coordinate system.
+ *
+ * @author Eric Andrews
+ */
 public class Coordinate {
 
+    public static final Coordinate ORIGIN = new Coordinate(0, 0);
     private double x;
     private double y;
 
@@ -31,7 +37,7 @@ public class Coordinate {
     }
 
     public Coordinate right() {
-        return new Coordinate(x + 1,y);
+        return new Coordinate(x + 1, y);
     }
 
     @Override
@@ -57,6 +63,7 @@ public class Coordinate {
         return String.format("(%.2f, %.2f)", x, y);
     }
 
+    
     public static double manhattanDistance(Coordinate c1, Coordinate c2) {
         double dx = c1.getX() - c2.getX();
         double dy = c1.getY() - c2.getY();

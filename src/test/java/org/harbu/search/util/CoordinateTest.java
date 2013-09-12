@@ -5,8 +5,6 @@ import static org.junit.Assert.*;
 
 public class CoordinateTest {
 
-    private static final Coordinate ORIGIN = new Coordinate(0, 0);
-
     @Test
     public void testEquals_notEqual() {
         Coordinate c1 = new Coordinate(3, -2);
@@ -30,22 +28,22 @@ public class CoordinateTest {
 
     @Test
     public void testUp() {
-        assertEquals(new Coordinate(0, -1), ORIGIN.up());
+        assertEquals(new Coordinate(0, -1), Coordinate.ORIGIN.up());
     }
 
     @Test
     public void testDown() {
-        assertEquals(new Coordinate(0, 1), ORIGIN.down());
+        assertEquals(new Coordinate(0, 1), Coordinate.ORIGIN.down());
     }
 
     @Test
     public void testLeft() {
-        assertEquals(new Coordinate(-1, 0), ORIGIN.left());
+        assertEquals(new Coordinate(-1, 0), Coordinate.ORIGIN.left());
     }
 
     @Test
     public void testRight() {
-        assertEquals(new Coordinate(1, 0), ORIGIN.right());
+        assertEquals(new Coordinate(1, 0), Coordinate.ORIGIN.right());
     }
 
     @Test
