@@ -14,6 +14,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import static integrationtests.IntegrationTestHelper.*;
+import org.harbu.search.algorithm.Result;
 
 /**
  *
@@ -37,9 +38,9 @@ public class TSPIT {
     @Test
     public void testAlgorithms() {
         for (Algorithm algorithm : algorithms) {
-            assertTrue(algorithm.solve());
-            System.out.println(algorithm.getPathToGoal());
-            assertEquals(1552.9612081934351, algorithm.getTotalCost(), 0.00001);
+            Result result = algorithm.solve();
+            assertTrue(result.foundSolution());
+            assertEquals(1552.9612081934351, result.getTotalCost(), 0.00001);
         }
     }
     

@@ -7,12 +7,11 @@ import static integrationtests.IntegrationTestHelper.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import org.harbu.search.algorithm.AStar;
 import org.harbu.search.algorithm.Algorithm;
 import org.harbu.search.algorithm.BruteForceSearch;
 import static org.harbu.search.algorithm.BruteForceSearch.SearchType.BREADTH_FIRST;
 import static org.harbu.search.algorithm.BruteForceSearch.SearchType.DEPTH_FIRST;
-import org.harbu.search.algorithm.IDAStar;
+import org.harbu.search.algorithm.Result;
 import org.harbu.search.problem.maze.Maze;
 import org.harbu.search.problem.maze.MazeInput;
 import org.harbu.search.problem.maze.MazeState;
@@ -42,8 +41,9 @@ public class MazeIt {
     @Test
     public void testAlgorithms() {
         for (Algorithm algorithm : algorithmsToRun) {
-            assertTrue(algorithm.solve());
-            assertEquals(expectedPathLength, algorithm.getPathToGoal().size());
+            Result result = algorithm.solve();
+            assertTrue(result.foundSolution());
+            assertEquals(expectedPathLength, result.getDepth());
         }
     }
 

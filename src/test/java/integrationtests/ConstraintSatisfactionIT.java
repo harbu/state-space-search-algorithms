@@ -11,13 +11,11 @@ import org.harbu.search.algorithm.BruteForceSearch;
 import static org.harbu.search.algorithm.BruteForceSearch.SearchType.BREADTH_FIRST;
 import static org.harbu.search.algorithm.BruteForceSearch.SearchType.DEPTH_FIRST;
 import org.harbu.search.algorithm.IDAStar;
+import org.harbu.search.algorithm.Result;
 import org.harbu.search.problem.constraint.ConstraintSatisfaction;
 import org.harbu.search.problem.constraint.ConstraintSatisfactionState;
 import org.harbu.search.problem.constraint.impl.NQueensState;
 import org.harbu.search.problem.constraint.impl.SudokuState;
-import org.harbu.search.problem.slidingpuzzle.NPuzzle;
-import org.harbu.search.problem.slidingpuzzle.NPuzzleState;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -75,8 +73,9 @@ public class ConstraintSatisfactionIT {
     @Test
     public void testAlgorithm_queensProblem() {
         for (Algorithm algorithm : setUpAlgorithms(fourQueensProblem)) {
-            assertTrue(algorithm.solve());
-            assertThat(algorithm.getPathToGoal().getLast().toString(),
+            Result result = algorithm.solve();
+            assertTrue(result.foundSolution());
+            assertThat(result.getGoalState().toString(),
                     anyOf(is(FOUR_QUEENS_SOLUTIONS.get(0)),
                     is(FOUR_QUEENS_SOLUTIONS.get(1))));
         }
@@ -85,8 +84,9 @@ public class ConstraintSatisfactionIT {
     @Test
     public void testAlgorithm_sudokuProblem() {
         for (Algorithm algorithm : setUpAlgorithms(sudokuProblem)) {
-            assertTrue(algorithm.solve());
-            assertEquals(SUDOKU_EXPECTED_RESULT, algorithm.getPathToGoal().getLast().toString());
+            Result result = algorithm.solve();
+            assertTrue(result.foundSolution());
+            assertEquals(SUDOKU_EXPECTED_RESULT, result.getGoalState().toString());
         }
     }
 

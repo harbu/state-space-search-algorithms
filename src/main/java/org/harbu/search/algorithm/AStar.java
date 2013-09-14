@@ -1,5 +1,6 @@
 package org.harbu.search.algorithm;
 
+import java.util.Deque;
 import org.harbu.search.problem.Operation;
 import org.harbu.search.problem.Problem;
 import org.harbu.search.problem.State;
@@ -34,7 +35,7 @@ public class AStar<T extends State<T>> extends Algorithm<T> {
     }
 
     @Override
-    public boolean solve() {
+    public Result<T> solve() {
         Map<T, T> shortestPathToNodes = new HashMap<>();
         Map<T, Double> openSet = new HashMap<>();
         Set<T> closedSet = new HashSet<>();
@@ -48,9 +49,9 @@ public class AStar<T extends State<T>> extends Algorithm<T> {
             closedSet.add(current.getNode());
 
             if (goal.isGoalReached(current.getNode())) {
-                totalCost = current.getG();
-                reconstructPath(current.getNode(), shortestPathToNodes);
-                return true;
+                double totalCost = current.getG();
+                Deque<T> path = reconstructPath(current.getNode(), shortestPathToNodes);
+                return Result.makeSolution(path, totalCost);
             }
 
             for (Operation<T> move : current.getNode().getOperations()) {
@@ -69,15 +70,16 @@ public class AStar<T extends State<T>> extends Algorithm<T> {
             }
         }
 
-        return false;
+        return Result.makeNoSolution();
     }
 
-    private void reconstructPath(T node, Map<T, T> shortestPathToNodes) {
-        pathToGoal = new LinkedList<>();
+    private Deque<T> reconstructPath(T node, Map<T, T> shortestPathToNodes) {
+        Deque<T> pathToGoal = new LinkedList<>();
         while (!node.equals(start)) {
             pathToGoal.addFirst(node);
             node = shortestPathToNodes.get(node);
         }
         pathToGoal.addFirst(start);
+        return pathToGoal;
     }
 }

@@ -7,6 +7,7 @@ import org.harbu.search.algorithm.AStar;
 import org.harbu.search.algorithm.Algorithm;
 import org.harbu.search.algorithm.BruteForceSearch;
 import org.harbu.search.algorithm.IDAStar;
+import org.harbu.search.algorithm.Result;
 import org.harbu.search.problem.slidingpuzzle.NPuzzle;
 import org.harbu.search.problem.slidingpuzzle.NPuzzleState;
 import org.junit.Test;
@@ -61,9 +62,9 @@ public class NPuzzleIT {
     public void testAlgorithms() {
         for (NPuzzle problem : problems) {
             for (Algorithm<NPuzzleState> algorithm : setUpAlgorithms(problem)) {
-                assertTrue(algorithm.solve());
-                assertEquals(GOAL,
-                        algorithm.getPathToGoal().get(algorithm.getPathToGoal().size()-1));
+                Result<NPuzzleState> result = algorithm.solve();
+                assertTrue(result.foundSolution());
+                assertEquals(GOAL, result.getGoalState());
             }
         }
     }

@@ -1,5 +1,6 @@
 package org.harbu.search.algorithm;
 
+import java.util.Deque;
 import org.harbu.search.problem.Operation;
 import org.harbu.search.problem.Problem;
 import org.harbu.search.problem.State;
@@ -25,21 +26,24 @@ public class IDAStar<T extends State<T>> extends Algorithm<T> {
 
     private static final double INFINITY = Double.POSITIVE_INFINITY;
     private static final double FOUND = -1;
+    
+    private Deque<T> pathToGoal;
+    private double totalCost;
 
     public IDAStar(Problem<T> problem) {
         super(problem);
     }
 
     @Override
-    public boolean solve() {
+    public Result<T> solve() {
         double threshold = heuristic.calculate(start);
         while (true) {
             double result = search(start, 0, threshold);
 
             if (result == FOUND) {
-                return true;
+                return Result.makeSolution(pathToGoal, totalCost);
             } else if (result == INFINITY) {
-                return false;
+                return Result.makeNoSolution();
             } else {
                 threshold = result;
             }

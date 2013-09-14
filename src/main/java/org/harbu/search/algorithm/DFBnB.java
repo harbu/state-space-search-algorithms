@@ -16,8 +16,8 @@ public class DFBnB<T extends State<T>> extends Algorithm<T> {
     }
 
     @Override
-    public boolean solve() {
-        double lowestCostSolutionSoFar = Double.POSITIVE_INFINITY;
-        return false;
+    public Result<T> solve() {
+        double lowestCostPath = Double.POSITIVE_INFINITY;
+        return null;
     }
 }

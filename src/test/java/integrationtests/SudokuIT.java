@@ -7,6 +7,7 @@ import org.harbu.search.algorithm.AStar;
 import org.harbu.search.algorithm.Algorithm;
 import org.harbu.search.algorithm.BruteForceSearch;
 import org.harbu.search.algorithm.IDAStar;
+import org.harbu.search.algorithm.Result;
 import org.harbu.search.problem.constraint.ConstraintSatisfaction;
 import org.harbu.search.problem.constraint.ConstraintSatisfactionState;
 import org.harbu.search.problem.constraint.impl.SudokuState;
@@ -74,10 +75,9 @@ public class SudokuIT {
         problem = new ConstraintSatisfaction(new SudokuState(INPUT[0]));
         setUpAlgorithms(problem);
         for (Algorithm<ConstraintSatisfactionState> algorithm : algorithmsToRun) {
-            assertTrue(algorithm.solve());
-            ConstraintSatisfactionState finalState =
-                    algorithm.getPathToGoal().get(algorithm.getPathToGoal().size() - 1);
-            assertEquals(EXPECTED_RESULT_1, finalState.toString());
+            Result<ConstraintSatisfactionState> result = algorithm.solve();
+            assertTrue(result.foundSolution());
+            assertEquals(EXPECTED_RESULT_1, result.getGoalState().toString());
         }
     }
 
@@ -86,10 +86,9 @@ public class SudokuIT {
         problem = new ConstraintSatisfaction(new SudokuState(INPUT[1]));
         setUpAlgorithms(problem);
         for (Algorithm<ConstraintSatisfactionState> algorithm : algorithmsToRun) {
-            assertTrue(algorithm.solve());
-            ConstraintSatisfactionState finalState =
-                    algorithm.getPathToGoal().get(algorithm.getPathToGoal().size() - 1);
-            assertEquals(EXPECTED_RESULT_2, finalState.toString());
+            Result<ConstraintSatisfactionState> result = algorithm.solve();
+            assertTrue(result.foundSolution());
+            assertEquals(EXPECTED_RESULT_2, result.getGoalState().toString());
         }
     }
 

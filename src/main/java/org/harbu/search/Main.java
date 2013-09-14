@@ -13,6 +13,7 @@ import org.harbu.search.problem.tsp.TSPState;
 import org.harbu.search.util.CompleteGraph;
 import org.harbu.search.util.ProblemRandomizer;
 import java.util.Arrays;
+import org.harbu.search.algorithm.Result;
 
 /**
  *
@@ -34,11 +35,11 @@ public class Main {
 
         NPuzzleState start = ProblemRandomizer.randomizeProblem(goal, 500);
         Algorithm<NPuzzleState> a = new AStar<>(new NPuzzle(start, goal));
-        a.solve();
+        Result<NPuzzleState> result = a.solve();
         System.out.println(start);
         System.out.println("-----");
-        System.out.println(a.getPathToGoal());
-        System.out.println("Number of steps required: " + a.getPathToGoal().size());
+        System.out.println(result.getPath());
+        System.out.println("Number of steps required: " + result.getDepth());
     }
     
     public static void tsp() {
@@ -73,11 +74,11 @@ public class Main {
         
         TSPState start = TSPState.makeTSPStart(graph, "Vantaa");
         Algorithm<TSPState> a = new AStar<>(new TSP(start));
-        a.solve();
+        Result<TSPState> result = a.solve();
         System.out.println(start);
         System.out.println("-----");
-        System.out.println(a.getPathToGoal());
-        System.out.println("Number of steps required: " + a.getPathToGoal().size());
+        System.out.println(result.getPath());
+        System.out.println("Number of steps required: " + result.getDepth());
     }
     
     public static void queens() {
@@ -85,8 +86,8 @@ public class Main {
         Algorithm algorithm = new BruteForceSearch(
                 new ConstraintSatisfaction(problem),
                 BruteForceSearch.SearchType.DEPTH_FIRST);
-        algorithm.solve();
-        System.out.println(algorithm.getPathToGoal().get(algorithm.getPathToGoal().size()-1));
+        Result result = algorithm.solve();
+        System.out.println(result.getGoalState());
     }
     
      public static void sudoku() {
@@ -104,7 +105,7 @@ public class Main {
         Algorithm algorithm = new BruteForceSearch<>(
                 new ConstraintSatisfaction(problem),
                 BruteForceSearch.SearchType.DEPTH_FIRST);
-        algorithm.solve();
-        System.out.println(algorithm.getPathToGoal());
+        Result result = algorithm.solve();
+        System.out.println(result.getPath());
     }
 }

@@ -12,20 +12,17 @@ import java.util.Set;
 
 /**
  * Implementations of basic breadth-first and depth-first search algorithms.
- * 
- * @author Eric Andrews
- * @param  <T> the state space type
  *
- * Good:
- * + Both are conceptually simple.
- * + BFS: Guaranteed to find best path, if unit-cost edges.
- * + DFS: low memory use, asymptotically equal to depth of search.
- * 
- * Bad:
- * - Neither use heuristic to guide search.
- * - DFS: can end up in an infinite path when searching graphs.
- * - DFS: not guaranteed find shortest path.
- * - BFS: high memory use.
+ * @author Eric Andrews
+ * @param <T> the state space type
+ *
+ * Good: + Both are conceptually simple. + BFS: Guaranteed to find best path, if
+ * unit-cost edges. + DFS: low memory use, asymptotically equal to depth of
+ * search.
+ *
+ * Bad: - Neither use heuristic to guide search. - DFS: can end up in an
+ * infinite path when searching graphs. - DFS: not guaranteed find shortest
+ * path. - BFS: high memory use.
  *
  */
 public class BruteForceSearch<T extends State<T>> extends Algorithm<T> {
@@ -44,7 +41,7 @@ public class BruteForceSearch<T extends State<T>> extends Algorithm<T> {
     }
 
     @Override
-    public boolean solve() {
+    public Result<T> solve() {
         Set<T> closedSet = new HashSet<>();
         Deque<T> openList = new LinkedList<>();
         Map<T, T> pathTo = new HashMap<>();
@@ -57,8 +54,7 @@ public class BruteForceSearch<T extends State<T>> extends Algorithm<T> {
             T node = openList.pop();
 
             if (goal.isGoalReached(node)) {
-                rebuildPath(pathTo, node);
-                return true;
+                return Result.makeSolution(rebuildPath(pathTo, node), 0);
             }
 
             for (Operation<T> move : node.getOperations()) {
@@ -71,7 +67,7 @@ public class BruteForceSearch<T extends State<T>> extends Algorithm<T> {
             }
         }
 
-        return false;
+        return Result.makeNoSolution();
     }
 
     private void putToOpenList(Deque<T> openList, T node) {
@@ -82,11 +78,12 @@ public class BruteForceSearch<T extends State<T>> extends Algorithm<T> {
         }
     }
 
-    private void rebuildPath(Map<T, T> pathTo, T node) {
-        pathToGoal = new LinkedList<>();
+    private Deque<T> rebuildPath(Map<T, T> pathTo, T node) {
+        Deque<T> pathToGoal = new LinkedList<>();
         while (node != null) {
             pathToGoal.addFirst(node);
             node = pathTo.get(node);
         }
+        return pathToGoal;
     }
 }
