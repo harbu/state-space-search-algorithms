@@ -13,6 +13,7 @@ import org.harbu.search.problem.tsp.TSPState;
 import org.harbu.search.util.CompleteGraph;
 import org.harbu.search.util.ProblemRandomizer;
 import java.util.Arrays;
+import org.harbu.search.algorithm.DFBnB;
 import org.harbu.search.algorithm.Result;
 
 /**
@@ -22,7 +23,7 @@ import org.harbu.search.algorithm.Result;
 public class Main {
     
     public static void main(String[] args) {
-        sudoku();
+        tsp();
     }
 
     public static void slidingPuzzle() {
@@ -73,7 +74,7 @@ public class Main {
         );
         
         TSPState start = TSPState.makeTSPStart(graph, "Vantaa");
-        Algorithm<TSPState> a = new AStar<>(new TSP(start));
+        Algorithm<TSPState> a = new DFBnB<>(new TSP(start));
         Result<TSPState> result = a.solve();
         System.out.println(start);
         System.out.println("-----");

@@ -11,6 +11,7 @@ import org.harbu.search.algorithm.Algorithm;
 import org.harbu.search.algorithm.BruteForceSearch;
 import static org.harbu.search.algorithm.BruteForceSearch.SearchType.BREADTH_FIRST;
 import static org.harbu.search.algorithm.BruteForceSearch.SearchType.DEPTH_FIRST;
+import org.harbu.search.algorithm.DFBnB;
 import org.harbu.search.algorithm.Result;
 import org.harbu.search.problem.maze.Maze;
 import org.harbu.search.problem.maze.MazeInput;

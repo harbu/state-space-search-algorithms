@@ -6,6 +6,7 @@ import java.util.List;
 import org.harbu.search.algorithm.AStar;
 import org.harbu.search.algorithm.Algorithm;
 import org.harbu.search.algorithm.BruteForceSearch;
+import org.harbu.search.algorithm.DFBnB;
 import org.harbu.search.algorithm.IDAStar;
 import org.harbu.search.algorithm.Result;
 import org.harbu.search.problem.slidingpuzzle.NPuzzle;

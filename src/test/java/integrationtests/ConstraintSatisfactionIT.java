@@ -10,6 +10,7 @@ import org.harbu.search.algorithm.Algorithm;
 import org.harbu.search.algorithm.BruteForceSearch;
 import static org.harbu.search.algorithm.BruteForceSearch.SearchType.BREADTH_FIRST;
 import static org.harbu.search.algorithm.BruteForceSearch.SearchType.DEPTH_FIRST;
+import org.harbu.search.algorithm.DFBnB;
 import org.harbu.search.algorithm.IDAStar;
 import org.harbu.search.algorithm.Result;
 import org.harbu.search.problem.constraint.ConstraintSatisfaction;
@@ -94,6 +95,7 @@ public class ConstraintSatisfactionIT {
         List<Algorithm<ConstraintSatisfactionState>> algorithmsToRun = new ArrayList<>();
         algorithmsToRun.add(new AStar<>(problem));
         algorithmsToRun.add(new IDAStar<>(problem));
+        algorithmsToRun.add(new DFBnB<>(problem));
         algorithmsToRun.add(new BruteForceSearch<>(problem, DEPTH_FIRST));
         algorithmsToRun.add(new BruteForceSearch<>(problem, BREADTH_FIRST));
         return algorithmsToRun;

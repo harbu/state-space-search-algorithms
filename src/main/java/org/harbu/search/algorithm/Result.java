@@ -7,6 +7,7 @@ import org.harbu.search.problem.State;
 
 /**
  * The results of a run of an <class>Algorithm</code>.
+ *
  * @author Eric Andrews
  */
 public class Result<T extends State<T>> {
@@ -46,7 +47,7 @@ public class Result<T extends State<T>> {
             return path.size();
         }
     }
-    
+
     public boolean foundSolution() {
         return goalState != null;
     }

@@ -14,6 +14,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import static integrationtests.IntegrationTestHelper.*;
+import org.harbu.search.algorithm.DFBnB;
 import org.harbu.search.algorithm.Result;
 
 /**
@@ -48,6 +49,7 @@ public class TSPIT {
     private List<Algorithm<TSPState>> setUpAlgorithms(TSP problem) {
         List<Algorithm<TSPState>> algorithmsToRun = new ArrayList<>();
         algorithmsToRun.add(new AStar<>(problem));
+        algorithmsToRun.add(new DFBnB<>(problem));
         return algorithmsToRun;
     }
 }

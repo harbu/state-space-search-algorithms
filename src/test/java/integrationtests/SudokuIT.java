@@ -6,6 +6,7 @@ import java.util.List;
 import org.harbu.search.algorithm.AStar;
 import org.harbu.search.algorithm.Algorithm;
 import org.harbu.search.algorithm.BruteForceSearch;
+import org.harbu.search.algorithm.DFBnB;
 import org.harbu.search.algorithm.IDAStar;
 import org.harbu.search.algorithm.Result;
 import org.harbu.search.problem.constraint.ConstraintSatisfaction;
@@ -96,6 +97,7 @@ public class SudokuIT {
         algorithmsToRun = new ArrayList<>();
         algorithmsToRun.add(new AStar<>(problem));
         algorithmsToRun.add(new IDAStar<>(problem));
+        algorithmsToRun.add(new DFBnB<>(problem));
         algorithmsToRun.add(new BruteForceSearch<>(problem, DEPTH_FIRST));
         algorithmsToRun.add(new BruteForceSearch<>(problem, BREADTH_FIRST));
     }
