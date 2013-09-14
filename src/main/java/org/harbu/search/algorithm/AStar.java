@@ -36,22 +36,18 @@ public class AStar<T extends State<T>> extends Algorithm<T> {
 
     @Override
     protected Result<T> solve() {
-        Map<T, T> shortestPathToNodes = new HashMap<>();
-        Map<T, Double> openSet = new HashMap<>();
         Set<T> closedSet = new HashSet<>();
-        PriorityQueue<AStarNode<T>> queue = new PriorityQueue<>();
+        AStarOpenList<T> queue = new AStarOpenList<>();
+        queue.add(start, null, 0, heuristic.calculate(start));
 
-        queue.add(new AStarNode<>(start, 0, heuristic.calculate(start)));
-
-        while (!queue.isEmpty()) {
-            AStarNode<T> current = queue.poll();
-            openSet.remove(current.getNode());
+        while (queue.hasElements()) {
+            AStarNode<T> current = queue.removeSmallest();
             closedSet.add(current.getNode());
             stats.nodeExpanded();
 
             if (goal.isGoalReached(current.getNode())) {
                 double totalCost = current.getG();
-                Deque<T> path = reconstructPath(current.getNode(), shortestPathToNodes);
+                Deque<T> path = reconstructPath(current);
                 return Result.makeSolution(path, totalCost);
             }
 
@@ -61,13 +57,10 @@ public class AStar<T extends State<T>> extends Algorithm<T> {
                 
                 if (!closedSet.contains(neighbour)) {
                     double tentativeG = current.getG() + operation.getCost();
-                    if (!openSet.containsKey(neighbour)) {
-                        queue.add(new AStarNode<>(neighbour, tentativeG, heuristic.calculate(neighbour)));
-                        shortestPathToNodes.put(neighbour, current.getNode());
-                        openSet.put(neighbour, tentativeG);
-                    } else if (tentativeG < openSet.get(neighbour)) {
-                        queue.add(new AStarNode<>(neighbour, tentativeG, heuristic.calculate(neighbour)));
-                        shortestPathToNodes.put(neighbour, current.getNode());
+                    if (!queue.containsState(neighbour)) {
+                        queue.add(neighbour, current, tentativeG, heuristic.calculate(neighbour));
+                    } else if (tentativeG < queue.getNodeFor(neighbour).getG()) {
+                        queue.update(neighbour, current, tentativeG);
                     }
                 }
             }
@@ -76,11 +69,11 @@ public class AStar<T extends State<T>> extends Algorithm<T> {
         return Result.makeNoSolution();
     }
 
-    private Deque<T> reconstructPath(T node, Map<T, T> shortestPathToNodes) {
+    private Deque<T> reconstructPath(AStarNode<T> node) {
         Deque<T> pathToGoal = new LinkedList<>();
-        while (!node.equals(start)) {
-            pathToGoal.addFirst(node);
-            node = shortestPathToNodes.get(node);
+        while (node != null) {
+            pathToGoal.addFirst(node.getNode());
+            node = node.getParent();
         }
         pathToGoal.addFirst(start);
         return pathToGoal;

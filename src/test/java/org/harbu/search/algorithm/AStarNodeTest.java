@@ -14,7 +14,7 @@ public class AStarNodeTest {
 
     @Before
     public void setUp() {
-        queueEntry = new AStarNode<>(new ExampleState(), 3.141592, 9);
+        queueEntry = new AStarNode<>(new ExampleState(), null, 3.141592, 9);
     }
 
     @Test
@@ -24,8 +24,8 @@ public class AStarNodeTest {
 
     @Test
     public void testCompareTo() {
-        assertEquals(-1, queueEntry.compareTo(new AStarNode<>(new ExampleState(), 6.141592, 8)));
-        assertEquals(1, queueEntry.compareTo(new AStarNode<>(new ExampleState(), 0, 0)));
+        assertEquals(-1, queueEntry.compareTo(new AStarNode<>(new ExampleState(), null, 6.141592, 8)));
+        assertEquals(1, queueEntry.compareTo(new AStarNode<>(new ExampleState(), null, 0, 0)));
     }
 
     private class ExampleState implements State<ExampleState> {

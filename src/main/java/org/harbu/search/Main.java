@@ -47,7 +47,7 @@ public class Main {
         CompleteGraph graph = new CompleteGraph(
                 Arrays.asList("Turku", "Helsinki", "Vantaa", "Rovaniemi", "Tuusula",
                 "Lappeenranta", "Jyväskylä", "Imatra", "Tampere", "Kouvola", "Pietari",
-                "Tallinna", "Espoo", "Inkoo", "Nuokio", "Malmi", "Nääksiä", "Rulola", "Malaria"),
+                "Tallinna", "Espoo", "Inkoo", "Nuokio", "Malmi", "Nääksiä"),
                 new double[][]{
                     {},
                     {214},
@@ -65,9 +65,7 @@ public class Main {
                     {145, 623, 500, 425, 623, 532, 319, 59, 523, 699, 958, 5122, 259},
                     {146, 900, 953, 800, 756, 312, 20, 532, 629, 623, 195, 623, 256, 513},
                     {646, 620, 353, 540, 90, 732, 620, 132, 929, 323, 115, 603, 286, 472, 536},
-                    {646, 620, 353, 540, 90, 732, 620, 132, 929, 323, 115, 603, 286, 472, 536, 2162},
-                    {125, 20, 153, 340, 802, 730, 628, 132, 122, 323, 165, 603, 783, 72, 136, 2162, 321},
-                    {125, 20, 153, 340, 802, 730, 628, 132, 122, 323, 165, 603, 783, 72, 136, 2162, 321, 51}
+                    {646, 620, 353, 540, 90, 732, 620, 132, 929, 323, 115, 603, 286, 472, 536, 2162}
                     
                     
                 }
@@ -80,6 +78,7 @@ public class Main {
         System.out.println("-----");
         System.out.println(result.getPath());
         System.out.println("Number of steps required: " + result.getDepth());
+        System.out.println(result.getStats());
     }
     
     public static void queens() {
