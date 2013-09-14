@@ -28,7 +28,7 @@ public class DFBnB<T extends State<T>> extends Algorithm<T> {
     }
 
     @Override
-    public Result<T> solve() {
+    protected Result<T> solve() {
         currentPath = new LinkedList<>();
         minCostSolution = Double.POSITIVE_INFINITY;
 
@@ -42,7 +42,8 @@ public class DFBnB<T extends State<T>> extends Algorithm<T> {
     }
 
     private void solveBranch(T node, double costToNode) {
-
+        
+        stats.nodeExpanded();
         currentPath.addLast(node);
 
         double f = costToNode + heuristic.calculate(node);
@@ -52,6 +53,7 @@ public class DFBnB<T extends State<T>> extends Algorithm<T> {
                 minCostSolution = f;
             } else {
                 for (Operation<T> operation : operationsInAscendingOrder(node)) {
+                    stats.nodeGenerated();
                     solveBranch(operation.getNode(), costToNode + operation.getCost());
                 }
             }

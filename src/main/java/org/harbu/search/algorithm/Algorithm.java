@@ -17,12 +17,20 @@ public abstract class Algorithm<T extends State<T>> {
     protected final T start;
     protected final Goal<T> goal;
     protected final Heuristic<T> heuristic;
+    protected final SearchStats stats;
 
     public Algorithm(Problem<T> problem) {
         this.start = problem.getStartState();
         this.goal = problem.getGoal();
         this.heuristic = problem.getHeuristic();
+        this.stats = new SearchStats(getClass().getName(), problem.getClass().getName());
+    }
+    
+    public Result<T> run() {
+        Result<T> result = solve();
+        result.setStats(stats);
+        return result;
     }
 
-    public abstract Result<T> solve();
+    protected abstract Result<T> solve();
 }

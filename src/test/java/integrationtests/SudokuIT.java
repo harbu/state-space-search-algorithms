@@ -76,7 +76,7 @@ public class SudokuIT {
         problem = new ConstraintSatisfaction(new SudokuState(INPUT[0]));
         setUpAlgorithms(problem);
         for (Algorithm<ConstraintSatisfactionState> algorithm : algorithmsToRun) {
-            Result<ConstraintSatisfactionState> result = algorithm.solve();
+            Result<ConstraintSatisfactionState> result = algorithm.run();
             assertTrue(result.foundSolution());
             assertEquals(EXPECTED_RESULT_1, result.getGoalState().toString());
         }
@@ -87,7 +87,7 @@ public class SudokuIT {
         problem = new ConstraintSatisfaction(new SudokuState(INPUT[1]));
         setUpAlgorithms(problem);
         for (Algorithm<ConstraintSatisfactionState> algorithm : algorithmsToRun) {
-            Result<ConstraintSatisfactionState> result = algorithm.solve();
+            Result<ConstraintSatisfactionState> result = algorithm.run();
             assertTrue(result.foundSolution());
             assertEquals(EXPECTED_RESULT_2, result.getGoalState().toString());
         }

@@ -42,7 +42,7 @@ public class MazeIt {
     @Test
     public void testAlgorithms() {
         for (Algorithm algorithm : algorithmsToRun) {
-            Result result = algorithm.solve();
+            Result result = algorithm.run();
             assertTrue(result.foundSolution());
             assertEquals(expectedPathLength, result.getDepth());
         }

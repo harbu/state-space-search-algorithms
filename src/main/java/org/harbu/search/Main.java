@@ -36,7 +36,7 @@ public class Main {
 
         NPuzzleState start = ProblemRandomizer.randomizeProblem(goal, 500);
         Algorithm<NPuzzleState> a = new AStar<>(new NPuzzle(start, goal));
-        Result<NPuzzleState> result = a.solve();
+        Result<NPuzzleState> result = a.run();
         System.out.println(start);
         System.out.println("-----");
         System.out.println(result.getPath());
@@ -75,7 +75,7 @@ public class Main {
         
         TSPState start = TSPState.makeTSPStart(graph, "Vantaa");
         Algorithm<TSPState> a = new DFBnB<>(new TSP(start));
-        Result<TSPState> result = a.solve();
+        Result<TSPState> result = a.run();
         System.out.println(start);
         System.out.println("-----");
         System.out.println(result.getPath());
@@ -87,7 +87,7 @@ public class Main {
         Algorithm algorithm = new BruteForceSearch(
                 new ConstraintSatisfaction(problem),
                 BruteForceSearch.SearchType.DEPTH_FIRST);
-        Result result = algorithm.solve();
+        Result result = algorithm.run();
         System.out.println(result.getGoalState());
     }
     
@@ -106,7 +106,7 @@ public class Main {
         Algorithm algorithm = new BruteForceSearch<>(
                 new ConstraintSatisfaction(problem),
                 BruteForceSearch.SearchType.DEPTH_FIRST);
-        Result result = algorithm.solve();
+        Result result = algorithm.run();
         System.out.println(result.getPath());
     }
 }

@@ -74,20 +74,22 @@ public class ConstraintSatisfactionIT {
     @Test
     public void testAlgorithm_queensProblem() {
         for (Algorithm algorithm : setUpAlgorithms(fourQueensProblem)) {
-            Result result = algorithm.solve();
+            Result result = algorithm.run();
             assertTrue(result.foundSolution());
             assertThat(result.getGoalState().toString(),
                     anyOf(is(FOUR_QUEENS_SOLUTIONS.get(0)),
                     is(FOUR_QUEENS_SOLUTIONS.get(1))));
+            System.out.println(result.getStats());
         }
     }
     
     @Test
     public void testAlgorithm_sudokuProblem() {
         for (Algorithm algorithm : setUpAlgorithms(sudokuProblem)) {
-            Result result = algorithm.solve();
+            Result result = algorithm.run();
             assertTrue(result.foundSolution());
             assertEquals(SUDOKU_EXPECTED_RESULT, result.getGoalState().toString());
+            System.out.println(result.getStats());
         }
     }
 

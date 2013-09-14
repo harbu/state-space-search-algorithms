@@ -41,7 +41,7 @@ public class BruteForceSearch<T extends State<T>> extends Algorithm<T> {
     }
 
     @Override
-    public Result<T> solve() {
+    protected Result<T> solve() {
         Set<T> closedSet = new HashSet<>();
         Deque<T> openList = new LinkedList<>();
         Map<T, T> pathTo = new HashMap<>();
@@ -52,13 +52,16 @@ public class BruteForceSearch<T extends State<T>> extends Algorithm<T> {
 
         while (!openList.isEmpty()) {
             T node = openList.pop();
+            stats.nodeExpanded();
 
             if (goal.isGoalReached(node)) {
                 return Result.makeSolution(rebuildPath(pathTo, node), 0);
             }
 
-            for (Operation<T> move : node.getOperations()) {
-                T neighbour = move.getNode();
+            for (Operation<T> operation : node.getOperations()) {
+                T neighbour = operation.getNode();
+                stats.nodeGenerated();
+                
                 if (!closedSet.contains(neighbour)) {
                     pathTo.put(neighbour, node);
                     closedSet.add(neighbour);

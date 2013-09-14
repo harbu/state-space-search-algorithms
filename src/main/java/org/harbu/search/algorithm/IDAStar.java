@@ -35,7 +35,7 @@ public class IDAStar<T extends State<T>> extends Algorithm<T> {
     }
 
     @Override
-    public Result<T> solve() {
+    protected Result<T> solve() {
         double threshold = heuristic.calculate(start);
         while (true) {
             double result = search(start, 0, threshold);
@@ -52,6 +52,7 @@ public class IDAStar<T extends State<T>> extends Algorithm<T> {
 
     private double search(T node, double costToNode, double threshold) {
         double f = costToNode + heuristic.calculate(node);
+        stats.nodeExpanded();
 
         if (f > threshold) {
             return f;
@@ -63,8 +64,10 @@ public class IDAStar<T extends State<T>> extends Algorithm<T> {
         }
 
         double min = INFINITY;
-        for (Operation<T> move : node.getOperations()) {
-            double t = search(move.getNode(), costToNode + move.getCost(), threshold);
+        for (Operation<T> operation : node.getOperations()) {
+            stats.nodeGenerated();
+            double t = search(operation.getNode(), costToNode + operation.getCost(), threshold);
+            
             if (t == FOUND) {
                 pathToGoal.addFirst(node);
                 return FOUND;

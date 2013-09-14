@@ -63,7 +63,7 @@ public class NPuzzleIT {
     public void testAlgorithms() {
         for (NPuzzle problem : problems) {
             for (Algorithm<NPuzzleState> algorithm : setUpAlgorithms(problem)) {
-                Result<NPuzzleState> result = algorithm.solve();
+                Result<NPuzzleState> result = algorithm.run();
                 assertTrue(result.foundSolution());
                 assertEquals(GOAL, result.getGoalState());
             }

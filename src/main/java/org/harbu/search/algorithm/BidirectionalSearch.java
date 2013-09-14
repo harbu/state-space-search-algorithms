@@ -10,7 +10,7 @@ public class BidirectionalSearch<T extends State<T>> extends Algorithm<T> {
     }
 
     @Override
-    public Result<T> solve() {
+    protected Result<T> solve() {
         // TODO: implement
         throw new UnsupportedOperationException("Not supported yet.");
     }

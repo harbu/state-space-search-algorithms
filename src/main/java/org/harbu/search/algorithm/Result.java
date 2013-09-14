@@ -15,6 +15,7 @@ public class Result<T extends State<T>> {
     private Deque<T> path;
     private T goalState;
     private double totalCost;
+    private SearchStats stats;
 
     private Result() {
         this.path = null;
@@ -28,12 +29,16 @@ public class Result<T extends State<T>> {
         this.totalCost = totalCost;
     }
 
-    public List<T> getPath() {
-        return ImmutableList.copyOf(path);
+    public boolean foundSolution() {
+        return goalState != null;
     }
 
     public T getGoalState() {
         return goalState;
+    }
+
+    public List<T> getPath() {
+        return ImmutableList.copyOf(path);
     }
 
     public double getTotalCost() {
@@ -48,8 +53,12 @@ public class Result<T extends State<T>> {
         }
     }
 
-    public boolean foundSolution() {
-        return goalState != null;
+    public void setStats(SearchStats stats) {
+        this.stats = stats;
+    }
+
+    public SearchStats getStats() {
+        return stats;
     }
 
     public static <T extends State<T>> Result<T> makeSolution(Deque<T> path, double totalCost) {

@@ -39,9 +39,10 @@ public class TSPIT {
     @Test
     public void testAlgorithms() {
         for (Algorithm algorithm : algorithms) {
-            Result result = algorithm.solve();
+            Result result = algorithm.run();
             assertTrue(result.foundSolution());
             assertEquals(1552.9612081934351, result.getTotalCost(), 0.00001);
+            System.out.println(result.getStats());
         }
     }
     
