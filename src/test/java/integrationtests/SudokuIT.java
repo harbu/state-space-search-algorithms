@@ -1,14 +1,14 @@
 package integrationtests;
 
-import static org.harbu.search.algorithm.BruteForceSearch.SearchType.*;
 import java.util.ArrayList;
 import java.util.List;
-import org.harbu.search.algorithm.AStar;
+import org.harbu.search.algorithm.bestfirst.AStar;
 import org.harbu.search.algorithm.Algorithm;
-import org.harbu.search.algorithm.BruteForceSearch;
-import org.harbu.search.algorithm.DFBnB;
-import org.harbu.search.algorithm.IDAStar;
+import org.harbu.search.algorithm.bestfirst.DFBnB;
+import org.harbu.search.algorithm.bestfirst.IDAStar;
 import org.harbu.search.algorithm.Result;
+import org.harbu.search.algorithm.bruteforce.BreadthFirstSearch;
+import org.harbu.search.algorithm.bruteforce.DepthFirstSearch;
 import org.harbu.search.problem.constraint.ConstraintSatisfaction;
 import org.harbu.search.problem.constraint.ConstraintSatisfactionState;
 import org.harbu.search.problem.constraint.impl.SudokuState;
@@ -98,7 +98,7 @@ public class SudokuIT {
         algorithmsToRun.add(new AStar<>(problem));
         algorithmsToRun.add(new IDAStar<>(problem));
         algorithmsToRun.add(new DFBnB<>(problem));
-        algorithmsToRun.add(new BruteForceSearch<>(problem, DEPTH_FIRST));
-        algorithmsToRun.add(new BruteForceSearch<>(problem, BREADTH_FIRST));
+        algorithmsToRun.add(new BreadthFirstSearch<>(problem));
+        algorithmsToRun.add(new DepthFirstSearch<>(problem));
     }
 }

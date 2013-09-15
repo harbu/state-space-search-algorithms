@@ -1,4 +1,4 @@
-package org.harbu.search.algorithm;
+package org.harbu.search.algorithm.bestfirst;
 
 import java.util.Deque;
 import org.harbu.search.problem.Operation;
@@ -10,6 +10,8 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Set;
+import org.harbu.search.algorithm.Algorithm;
+import org.harbu.search.algorithm.Result;
 
 /**
  * A*-star (best-first search) algorithm implementation.

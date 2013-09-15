@@ -1,8 +1,7 @@
 package org.harbu.search;
 
-import org.harbu.search.algorithm.AStar;
+import org.harbu.search.algorithm.bestfirst.AStar;
 import org.harbu.search.algorithm.Algorithm;
-import org.harbu.search.algorithm.BruteForceSearch;
 import org.harbu.search.problem.slidingpuzzle.NPuzzleState;
 import org.harbu.search.problem.constraint.ConstraintSatisfaction;
 import org.harbu.search.problem.constraint.impl.NQueensState;
@@ -13,8 +12,9 @@ import org.harbu.search.problem.tsp.TSPState;
 import org.harbu.search.util.CompleteGraph;
 import org.harbu.search.util.ProblemRandomizer;
 import java.util.Arrays;
-import org.harbu.search.algorithm.DFBnB;
+import org.harbu.search.algorithm.bestfirst.DFBnB;
 import org.harbu.search.algorithm.Result;
+import org.harbu.search.algorithm.bruteforce.DepthFirstSearch;
 
 /**
  *
@@ -83,9 +83,7 @@ public class Main {
     
     public static void queens() {
         NQueensState problem = new NQueensState(100);
-        Algorithm algorithm = new BruteForceSearch(
-                new ConstraintSatisfaction(problem),
-                BruteForceSearch.SearchType.DEPTH_FIRST);
+        Algorithm algorithm = new DepthFirstSearch(new ConstraintSatisfaction(problem));
         Result result = algorithm.run();
         System.out.println(result.getGoalState());
     }
@@ -102,9 +100,7 @@ public class Main {
             {0, 0, 0, 4, 1, 9, 0, 0, 5},
             {0, 0, 0, 0, 8, 0, 0, 7, 9}
         });
-        Algorithm algorithm = new BruteForceSearch<>(
-                new ConstraintSatisfaction(problem),
-                BruteForceSearch.SearchType.DEPTH_FIRST);
+        Algorithm algorithm = new DepthFirstSearch<>(new ConstraintSatisfaction(problem));
         Result result = algorithm.run();
         System.out.println(result.getPath());
     }

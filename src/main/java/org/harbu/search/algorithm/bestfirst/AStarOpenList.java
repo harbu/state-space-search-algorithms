@@ -1,5 +1,6 @@
-package org.harbu.search.algorithm;
+package org.harbu.search.algorithm.bestfirst;
 
+import org.harbu.search.algorithm.bestfirst.AStarNode;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.PriorityQueue;

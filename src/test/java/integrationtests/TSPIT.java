@@ -3,7 +3,7 @@ package integrationtests;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import org.harbu.search.algorithm.AStar;
+import org.harbu.search.algorithm.bestfirst.AStar;
 import org.harbu.search.algorithm.Algorithm;
 import org.harbu.search.problem.tsp.TSP;
 import org.harbu.search.problem.tsp.TSPCoordinateReader;
@@ -14,8 +14,9 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import static integrationtests.IntegrationTestHelper.*;
-import org.harbu.search.algorithm.DFBnB;
+import org.harbu.search.algorithm.bestfirst.DFBnB;
 import org.harbu.search.algorithm.Result;
+import org.harbu.search.algorithm.bestfirst.RecursiveBestFirst;
 
 /**
  *
@@ -51,6 +52,7 @@ public class TSPIT {
         List<Algorithm<TSPState>> algorithmsToRun = new ArrayList<>();
         algorithmsToRun.add(new AStar<>(problem));
         algorithmsToRun.add(new DFBnB<>(problem));
+        algorithmsToRun.add(new RecursiveBestFirst<>(problem));
         return algorithmsToRun;
     }
 }

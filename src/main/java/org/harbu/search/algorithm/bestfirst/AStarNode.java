@@ -1,4 +1,4 @@
-package org.harbu.search.algorithm;
+package org.harbu.search.algorithm.bestfirst;
 
 import java.util.Objects;
 

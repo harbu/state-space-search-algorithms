@@ -1,10 +1,12 @@
-package org.harbu.search.algorithm;
+package org.harbu.search.algorithm.bestfirst;
 
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
+import org.harbu.search.algorithm.Algorithm;
+import org.harbu.search.algorithm.Result;
 import org.harbu.search.problem.Operation;
 import org.harbu.search.problem.Problem;
 import org.harbu.search.problem.State;

@@ -1,5 +1,6 @@
 package org.harbu.search.algorithm;
 
+import org.harbu.search.algorithm.bestfirst.AStarNode;
 import java.util.List;
 import org.harbu.search.problem.Operation;
 import org.harbu.search.problem.State;

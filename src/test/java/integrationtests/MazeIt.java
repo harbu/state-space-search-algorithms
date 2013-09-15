@@ -8,11 +8,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import org.harbu.search.algorithm.Algorithm;
-import org.harbu.search.algorithm.BruteForceSearch;
-import static org.harbu.search.algorithm.BruteForceSearch.SearchType.BREADTH_FIRST;
-import static org.harbu.search.algorithm.BruteForceSearch.SearchType.DEPTH_FIRST;
-import org.harbu.search.algorithm.DFBnB;
+import org.harbu.search.algorithm.bestfirst.IDAStar;
 import org.harbu.search.algorithm.Result;
+import org.harbu.search.algorithm.bruteforce.BreadthFirstSearch;
+import org.harbu.search.algorithm.bruteforce.DepthFirstSearch;
 import org.harbu.search.problem.maze.Maze;
 import org.harbu.search.problem.maze.MazeInput;
 import org.harbu.search.problem.maze.MazeState;
@@ -45,14 +44,15 @@ public class MazeIt {
             Result result = algorithm.run();
             assertTrue(result.foundSolution());
             assertEquals(expectedPathLength, result.getDepth());
+            System.out.println(result.getStats());
         }
     }
 
     private void setUpAlgorithms(Maze problem) {
         algorithmsToRun = new ArrayList<>();
         //algorithmsToRun.add(new AStar<>(problem));
-        //algorithmsToRun.add(new IDAStar<>(problem));
-        algorithmsToRun.add(new BruteForceSearch<>(problem, DEPTH_FIRST));
-        algorithmsToRun.add(new BruteForceSearch<>(problem, BREADTH_FIRST));
+        algorithmsToRun.add(new IDAStar<>(problem));
+        algorithmsToRun.add(new BreadthFirstSearch<>(problem));
+        //algorithmsToRun.add(new DepthFirstSearch<>(problem));
     }
 }
