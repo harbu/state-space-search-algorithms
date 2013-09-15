@@ -14,6 +14,7 @@ import org.harbu.search.util.ProblemRandomizer;
 import java.util.Arrays;
 import org.harbu.search.algorithm.bestfirst.DFBnB;
 import org.harbu.search.algorithm.Result;
+import org.harbu.search.algorithm.bestfirst.RecursiveBestFirst;
 import org.harbu.search.algorithm.bruteforce.DepthFirstSearch;
 
 /**
@@ -72,7 +73,7 @@ public class Main {
         );
         
         TSPState start = TSPState.makeTSPStart(graph, "Vantaa");
-        Algorithm<TSPState> a = new DFBnB<>(new TSP(start));
+        Algorithm<TSPState> a = new RecursiveBestFirst<>(new TSP(start));
         Result<TSPState> result = a.run();
         System.out.println(start);
         System.out.println("-----");

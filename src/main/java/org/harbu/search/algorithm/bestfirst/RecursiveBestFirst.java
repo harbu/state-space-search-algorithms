@@ -30,7 +30,7 @@ public class RecursiveBestFirst<T extends State<T>> extends Algorithm<T> {
         startNode.setBackup(startNode.getF());
         double result = rbfs(startNode, Double.POSITIVE_INFINITY);
         if (result == FOUND_GOAL) {
-            return Result.makeSolution(buildPath(goalNode), result);
+            return Result.makeSolution(buildPath(goalNode), goalNode.getG());
         } else {
             return Result.makeNoSolution();
         }
@@ -48,16 +48,17 @@ public class RecursiveBestFirst<T extends State<T>> extends Algorithm<T> {
 
         List<Operation<T>> operations = node.getState().getOperations();
         List<Node> successors = asOrderedNodes(operations, node);
+        stats.nodeExpanded();
 
         if (successors.isEmpty()) {
             return Double.POSITIVE_INFINITY;
         } else if (successors.size() == 1) {
             return rbfs(successors.get(0), limit);
         } else {
-            while (successors.get(0).getBackup() < limit) {
+            while (successors.get(0).getBackup() <= limit) {
                 Node first = successors.get(0);
                 Node second = successors.get(1);
-                double newBackup = rbfs(first, Math.min(limit, second.getF()));
+                double newBackup = rbfs(first, Math.min(limit, second.getBackup()));
                 
                 if (newBackup == FOUND_GOAL) {
                     return FOUND_GOAL;
@@ -77,12 +78,9 @@ public class RecursiveBestFirst<T extends State<T>> extends Algorithm<T> {
             double g = parent.getG() + operation.getCost();
             double h = heuristic.calculate(neighbor);
             Node node = new Node(neighbor, parent, g, h);
-            if (parent.getF() < parent.getBackup()) {
-                node.setBackup(Math.max(g + h, parent.getBackup()));
-            } else {
-                node.setBackup(g + h);
-            }
+            node.setBackup(Math.max(g + h, parent.getBackup()));
             nodes.add(node);
+            stats.nodeGenerated();
         }
 
         Collections.sort(nodes);
@@ -144,6 +142,6 @@ public class RecursiveBestFirst<T extends State<T>> extends Algorithm<T> {
         @Override
         public int compareTo(Node o) {
             return Double.compare(this.getBackup(), o.getBackup());
-        }
+        }     
     }
 }
