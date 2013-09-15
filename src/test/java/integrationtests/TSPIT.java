@@ -52,7 +52,7 @@ public class TSPIT {
         List<Algorithm<TSPState>> algorithmsToRun = new ArrayList<>();
         algorithmsToRun.add(new AStar<>(problem));
         algorithmsToRun.add(new DFBnB<>(problem));
-        algorithmsToRun.add(new RecursiveBestFirst<>(problem));
+        //algorithmsToRun.add(new RecursiveBestFirst<>(problem));
         return algorithmsToRun;
     }
 }

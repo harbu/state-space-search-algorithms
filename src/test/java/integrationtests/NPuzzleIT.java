@@ -65,6 +65,7 @@ public class NPuzzleIT {
                 Result<NPuzzleState> result = algorithm.run();
                 assertTrue(result.foundSolution());
                 assertEquals(GOAL, result.getGoalState());
+                System.out.println(result.getStats());
             }
         }
     }
@@ -74,7 +75,7 @@ public class NPuzzleIT {
         algorithmsToRun.add(new AStar<>(problem));
         algorithmsToRun.add(new IDAStar<>(problem));
         algorithmsToRun.add(new BreadthFirstSearch<>(problem));
-        algorithmsToRun.add(new DepthFirstSearch<>(problem));
+        //algorithmsToRun.add(new DepthFirstSearch<>(problem));
         return algorithmsToRun;
     }
 }
